@@ -12,7 +12,7 @@ export default function Philosophy() {
       <div className="max-w-5xl mx-auto relative z-10 py-12">
         <div className="pl-6 md:pl-12 border-l-2 border-indigo-500/50">
           <p className="font-mono text-xs text-indigo-400 tracking-[0.2em] uppercase mb-8">
-            // OUR PHILOSOPHY
+            {"// OUR PHILOSOPHY"}
           </p>
 
           <motion.div
@@ -23,7 +23,7 @@ export default function Philosophy() {
             className="flex flex-col gap-8"
           >
             <p className="text-3xl md:text-6xl font-bold tracking-[-0.03em] text-[#EDEDED] leading-[1.1] font-sans">
-              Technology shouldn't be a walled garden.
+              Technology shouldn&apos;t be a walled garden.
             </p>
             <p className="text-xl md:text-3xl text-[#A1A1AA] font-light leading-relaxed max-w-4xl">
               We build digital public goods because fundamental infrastructure belongs to everyone. Sustainable, scalable, and radically open.
