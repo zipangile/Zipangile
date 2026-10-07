@@ -55,51 +55,6 @@ export default function Services() {
           </p>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-6 rounded-2xl border border-white/[0.08] bg-surface overflow-hidden"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-5">
-            <div className="lg:col-span-3 p-8 md:p-12">
-              <p className="font-mono text-[10px] text-indigo-300 tracking-[0.3em] uppercase mb-5">
-                Recent engagement
-              </p>
-              <h3 className="text-2xl md:text-3xl font-bold text-[#F4F4F5] tracking-tight mb-4 font-sans">
-                A training platform for a Zambian organization.
-              </h3>
-              <p className="text-sm md:text-base text-[#A1A1AA] font-light leading-relaxed mb-8 max-w-xl">
-                A two-sided platform for a board-game-based entrepreneur
-                training program: a facilitator console, an offline digital
-                fruit-store game, and a post-training toolkit — in English,
-                Nyanja, and Bemba. Fixed scope, ten-week build.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {["Facilitator console", "Offline-first game", "EN / NY / BEM", "10-week build"].map((t) => (
-                  <span
-                    key={t}
-                    className="font-mono text-[11px] tracking-wider text-[#C9C9CF] border border-white/10 rounded-full px-4 py-1.5 bg-white/[0.03]"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="lg:col-span-2 border-t lg:border-t-0 lg:border-l border-white/[0.07] bg-gradient-to-br from-indigo-500/[0.08] to-violet-500/[0.04] p-8 md:p-12 flex flex-col justify-center">
-              <div className="font-mono text-[11px] text-[#63636B] uppercase tracking-[0.25em] mb-3">
-                Engagement shape
-              </div>
-              <div className="text-lg text-[#EDEDED] font-medium mb-2">Fixed-scope build</div>
-              <p className="text-sm text-[#A1A1AA] font-light leading-relaxed">
-                Scoped, priced, and delivered as one engagement — the same
-                model we offer every founder who walks through the door.
-              </p>
-            </div>
-          </div>
-        </motion.div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {SERVICES.map((s, i) => {
             const Icon = s.icon;
