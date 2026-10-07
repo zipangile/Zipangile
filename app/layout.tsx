@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Zipangile | Building Digital Public Goods",
-  description: "Zipangile is a technology engineering firm designing resilient, open infrastructure for the next billion users.",
+  title: "Zipangile | Venture Studio & Engineering — Lusaka",
+  description: "Zipangile is a venture studio and engineering firm in Lusaka, Zambia. We build MVPs, platforms, and offline-first systems for founders — and digital public goods for the next billion users.",
 };
 
 export default function RootLayout({

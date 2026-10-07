@@ -34,17 +34,23 @@ function GlowCard({ children, className = "" }: { children: React.ReactNode; cla
 
 export default function BentoGrid() {
   return (
-    <section id="ubuntu-play" className="py-24 md:py-32 bg-black relative px-6">
+    <section id="flagship" className="py-28 md:py-40 bg-black relative px-6 border-t border-white/[0.06]">
       <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto">
-        <div className="mb-16 md:mb-24">
-          <p className="font-mono text-xs text-indigo-400 tracking-widest uppercase mb-4">
-            FLAGSHIP ARCHITECTURE
+        <div className="mb-16 md:mb-20">
+          <p className="font-mono text-xs text-indigo-300 tracking-[0.3em] uppercase mb-5">
+            Flagship // Public-goods proof
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#EDEDED] font-sans">
-            Engineering for resilient digital public spaces.
+          <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.04em] text-[#F4F4F5] font-sans max-w-3xl leading-[1.05]">
+            The product that proves how we build.
           </h2>
+          <p className="text-base md:text-lg text-[#A1A1AA] font-light leading-relaxed mt-6 max-w-2xl">
+            UbuntuPlay is our flagship — an offline-first educational gaming
+            platform for Zambian classrooms, built the same way we build for
+            clients: six curriculum-aligned games, an on-device AI tutor, and
+            four Android apps, engineered to run with no internet at all.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -68,7 +74,7 @@ export default function BentoGrid() {
 
               <div>
                 <a
-                  href="https://ubuntuplay.fly.dev/"
+                  href="https://ubuntuplay.zipangile.tech/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-sans text-sm font-medium rounded-lg hover:from-indigo-600 hover:to-violet-700 active:scale-[0.98] transition-all shadow-[0_4px_20px_rgba(99,102,241,0.25)]"
