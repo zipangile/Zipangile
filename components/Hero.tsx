@@ -2,6 +2,16 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { ArrowRight, Terminal } from "lucide-react";
+
+const BUILD_LINES = [
+  { text: "$ zipangile build --scope mvp", tone: "cmd" },
+  { text: "✓ scope locked · fixed price agreed", tone: "ok" },
+  { text: "✓ design system · ready", tone: "ok" },
+  { text: "✓ offline-first core · compiled", tone: "ok" },
+  { text: "✓ client handover · documented", tone: "ok" },
+  { text: "● status: systems online", tone: "live" },
+];
 
 export default function Hero() {
   const handleScroll = (id: string) => {
@@ -12,63 +22,110 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center px-6 overflow-hidden mesh-grid pt-16">
+    <section className="relative min-h-screen flex flex-col justify-center items-center px-6 overflow-hidden mesh-grid pt-32 pb-20">
       <div className="absolute inset-0 radial-glow-hero pointer-events-none" />
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center">
+      <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center w-full">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-mono text-xs text-indigo-400 border border-indigo-500/30 rounded-full px-4 py-1.5 bg-indigo-950/20 backdrop-blur-sm mb-8 tracking-widest uppercase"
+          className="font-mono text-[11px] text-indigo-300 border border-indigo-500/30 rounded-full px-5 py-2 bg-indigo-950/20 backdrop-blur-sm mb-10 tracking-[0.3em] uppercase"
         >
-          v2.0 // SYSTEMS ONLINE
+          Studio // Systems Online
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="text-5xl md:text-8xl font-bold text-[#EDEDED] tracking-[-0.04em] leading-[0.95] mb-8"
+          transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-[#F4F4F5] tracking-[-0.045em] leading-[1.0] mb-8"
         >
-          Building Digital
+          We build digital products
           <br />
-          Public Goods.
+          <span className="bg-gradient-to-r from-indigo-300 via-violet-300 to-indigo-300 bg-clip-text text-transparent">
+            that matter.
+          </span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-base md:text-xl text-[#A1A1AA] max-w-2xl mx-auto mb-12 font-sans font-light leading-relaxed"
+          transition={{ duration: 0.8, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          className="text-base md:text-xl text-[#A1A1AA] max-w-2xl mx-auto mb-12 font-light leading-relaxed"
         >
-          Zipangile is a technology engineering firm designing resilient, open infrastructure for the next billion users.
+          Zipangile is a venture studio and engineering firm in Lusaka. We
+          design and build MVPs, platforms, and offline-first systems for
+          founders — and we engineer digital public goods for the next billion
+          users.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col sm:flex-row items-center gap-4 mb-20"
         >
           <button
-            onClick={() => handleScroll("ubuntu-play")}
-            className="px-8 py-4 bg-white text-black font-sans font-medium text-sm rounded-lg hover:scale-[1.03] active:scale-[0.98] transition-all shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(255,255,255,0.25)]"
+            onClick={() => handleScroll("contact")}
+            className="group inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-medium text-sm rounded-xl hover:scale-[1.03] active:scale-[0.98] transition-all shadow-[0_0_30px_rgba(255,255,255,0.12)] hover:shadow-[0_0_44px_rgba(255,255,255,0.28)]"
           >
-            Explore Infrastructure
+            Start your build
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          </button>
+          <button
+            onClick={() => handleScroll("flagship")}
+            className="px-8 py-4 border border-white/15 text-[#EDEDED] font-medium text-sm rounded-xl hover:border-indigo-400/60 hover:text-white active:scale-[0.98] transition-all"
+          >
+            See our flagship
           </button>
         </motion.div>
-      </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 0.5, 0] }}
-        transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer"
-        onClick={() => handleScroll("ubuntu-play")}
-      >
-        <span className="font-mono text-[10px] tracking-widest text-[#52525B] uppercase">Scroll</span>
-        <div className="w-[1px] h-8 bg-[#52525B]" />
-      </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full max-w-2xl mx-auto"
+        >
+          <div className="rounded-2xl border border-white/10 bg-[#0A0A0C]/90 backdrop-blur-md shadow-[0_20px_80px_rgba(0,0,0,0.6)] overflow-hidden text-left">
+            <div className="flex items-center gap-2 px-5 py-3.5 border-b border-white/[0.07]">
+              <div className="flex gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]/80" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]/80" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]/80" />
+              </div>
+              <div className="flex items-center gap-2 ml-3">
+                <Terminal className="w-3.5 h-3.5 text-[#63636B]" />
+                <span className="font-mono text-[11px] text-[#63636B] tracking-wider">
+                  zipangile.studio — build pipeline
+                </span>
+              </div>
+            </div>
+            <div className="px-6 py-5 font-mono text-[13px] leading-[2.1]">
+              {BUILD_LINES.map((l, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.3 + i * 0.28, duration: 0.4 }}
+                  className={
+                    l.tone === "cmd"
+                      ? "text-[#EDEDED]"
+                      : l.tone === "ok"
+                        ? "text-[#A1A1AA]"
+                        : "text-emerald-400"
+                  }
+                >
+                  {l.text}
+                  {i === BUILD_LINES.length - 1 && (
+                    <span className="inline-block w-[8px] h-[15px] bg-emerald-400/80 ml-1.5 align-middle status-blink" />
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }
