@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Terminal } from "lucide-react";
 import TiltCard from "./TiltCard";
@@ -20,13 +21,6 @@ const BUILD_LINES = [
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const [glow, setGlow] = useState({ x: 50, y: 30, o: 0 });
-
-  const handleScroll = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
 
   // Headline reacts to cursor proximity — the words feel lit from within
   // as the visitor's cursor drifts near them.
@@ -114,17 +108,17 @@ export default function Hero() {
               className="flex flex-col sm:flex-row items-center gap-4 mb-4 lg:mb-0"
             >
               <MagneticButton
-                onClick={() => handleScroll("quote")}
                 className="btn-fluid group inline-flex items-center gap-2 px-8 py-4 text-white font-medium text-sm rounded-xl"
               >
-                Start your build
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                <Link href="/quote" className="inline-flex items-center gap-2">
+                  Start your build
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </Link>
               </MagneticButton>
               <MagneticButton
-                onClick={() => handleScroll("flagship")}
                 className="px-8 py-4 border border-white/15 text-[#EDEDED] font-medium text-sm rounded-xl hover:border-brand-400/60 hover:text-white active:scale-[0.98] transition-colors"
               >
-                See our flagship
+                <Link href="/services">See what we build</Link>
               </MagneticButton>
             </motion.div>
           </div>

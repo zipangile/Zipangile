@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Righteous, Inter, Anton } from "next/font/google";
 import "./globals.css";
+import SiteShell from "../components/SiteShell";
 
 const righteous = Righteous({
   weight: "400",
@@ -40,7 +41,7 @@ export default function RootLayout({
       <body
         className={`${righteous.variable} ${inter.variable} ${anton.variable} bg-[#0D0716] text-[#EDEDED] antialiased`}
       >
-        {children}
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );

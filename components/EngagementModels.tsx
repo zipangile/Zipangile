@@ -39,8 +39,8 @@ const MODELS = [
 ];
 
 export default function EngagementModels() {
-  const scrollToQuote = () => {
-    document.getElementById("quote")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const goToQuote = () => {
+    window.location.href = "/quote";
   };
 
   return (
@@ -107,7 +107,7 @@ export default function EngagementModels() {
                   ))}
                 </ul>
                 <button
-                  onClick={scrollToQuote}
+                  onClick={goToQuote}
                   className={`mt-auto inline-flex items-center gap-2 text-sm font-medium rounded-lg px-5 py-3 transition-all active:scale-[0.98] ${
                     m.featured
                       ? "bg-white text-black hover:shadow-[0_0_30px_rgba(255,255,255,0.25)]"

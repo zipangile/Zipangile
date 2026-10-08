@@ -1,12 +1,18 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 /**
- * Scroll-driven morph wrapper. As the section travels through the viewport,
- * it subtly scales, lifts, and de-blurs — the world transforms rather than
- * just sliding past. Respects prefers-reduced-motion via framer-motion.
+ * Cinematic scroll morph — camera rack-focus through scroll.
+ *
+ * As a section travels through the viewport it moves through three acts:
+ *   ENTER  — rises out of blur, scale settles from 0.94 → 1 (lens finding focus)
+ *   HOLD   — tack sharp, full presence
+ *   EXIT   — drifts up, softens into blur, recedes to 0.96 (focus racks away)
+ *
+ * All motion values are spring-lerped (Lusion's cardinal rule: never apply
+ * raw scroll values — lerped values feel expensive, raw values feel twitchy).
  */
 export default function ScrollMorph({
   children,
@@ -23,15 +29,36 @@ export default function ScrollMorph({
     offset: ["start end", "end start"],
   });
 
-  // Entering: rise + unblur + settle scale. Exiting: drift + soften.
-  const y = useTransform(scrollYProgress, [0, 0.35, 0.65, 1], [56 * intensity, 0, 0, -48 * intensity]);
-  const scale = useTransform(scrollYProgress, [0, 0.35, 0.65, 1], [0.965, 1, 1, 0.985]);
-  const blur = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [6, 0, 0, 4]);
-  const opacity = useTransform(scrollYProgress, [0, 0.18, 0.82, 1], [0, 1, 1, 0.25]);
-  const filter = useTransform(blur, (b) => `blur(${b.toFixed(2)}px)`);
+  // Spring-lerp the raw progress so every derived value glides
+  const smooth = useSpring(scrollYProgress, {
+    stiffness: 110,
+    damping: 26,
+    mass: 0.5,
+  });
+
+  // ENTER: rise 64px → 0, unblur 10px → 0, scale 0.94 → 1
+  // HOLD:  sharp
+  // EXIT:  drift -56px, soften to 6px blur, recede to 0.96, fade to 0.3
+  const y = useTransform(
+    smooth,
+    [0, 0.32, 0.62, 1],
+    [64 * intensity, 0, 0, -56 * intensity]
+  );
+  const scale = useTransform(
+    smooth,
+    [0, 0.32, 0.62, 1],
+    [0.94, 1, 1, 0.965]
+  );
+  const blurV = useTransform(smooth, [0, 0.28, 0.72, 1], [10, 0, 0, 7]);
+  const opacity = useTransform(smooth, [0, 0.16, 0.84, 1], [0, 1, 1, 0.3]);
+  const filter = useTransform(blurV, (b) => `blur(${b.toFixed(2)}px)`);
 
   return (
-    <motion.div ref={ref} style={{ y, scale, opacity, filter }} className={className}>
+    <motion.div
+      ref={ref}
+      style={{ y, scale, opacity, filter }}
+      className={className}
+    >
       {children}
     </motion.div>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { useScroll, useVelocity } from "framer-motion";
+import { motion, useScroll, useVelocity, useTransform, useSpring } from "framer-motion";
 
 // Number of campaign palette phases in lib/fluidSim (FLUID_PHASES) —
 // kept as a literal here so the heavy sim module stays lazy-loaded.
@@ -36,6 +36,11 @@ export default function FluidBackground() {
   const [failed, setFailed] = useState(false);
   const { scrollY, scrollYProgress } = useScroll();
   const scrollYVelocity = useVelocity(scrollY);
+
+  // Parallax: the fluid drifts at a different rate than content —
+  // depth between the world and the UI floating above it.
+  const parallaxY = useTransform(scrollY, [0, 2000], [0, -140]);
+  const smoothParallax = useSpring(parallaxY, { stiffness: 60, damping: 20 });
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -140,11 +145,11 @@ export default function FluidBackground() {
 
   return (
     <>
-      <canvas
+      <motion.canvas
         ref={canvasRef}
         aria-hidden
         className="fixed inset-0 -z-10 pointer-events-none h-full w-full"
-        style={{ background: "#0D0716" }}
+        style={{ background: "#0D0716", y: smoothParallax, scale: 1.08 }}
       />
       {/* Cinematic post grade — film grain + vignette. One unified grade
           makes fluid, cards, portraits, and type feel like a single world. */}

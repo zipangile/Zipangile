@@ -36,10 +36,11 @@ const STEPS = [
 ];
 
 function scrollToBooking() {
-  document.getElementById("booking")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  // Multi-page: booking lives at /book — quote is already saved to localStorage
+  window.location.href = "/book";
 }
 
-export default function QuoteWizard() {
+export default function QuoteWizard({ standalone = false }: { standalone?: boolean }) {
   const [step, setStep] = useState(0);
   const [idea, setIdea] = useState("");
   const [category, setCategory] = useState<ProjectCategory>("mvp");

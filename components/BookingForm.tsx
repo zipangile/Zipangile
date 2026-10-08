@@ -122,8 +122,7 @@ export default function BookingForm() {
 
   const inputCls =
     "glass-input px-4 py-3.5 text-[15px] placeholder:text-[#52525B]";
-  const labelCls =
-    "block font-mono text-[11px] tracking-[0.2em] uppercase text-[#A1A1AA] mb-2.5";
+  const labelCls = "glass-label";
 
   return (
     <section id="booking" className="py-28 md:py-40 bg-transparent relative px-6 border-t border-white/[0.06] overflow-hidden">

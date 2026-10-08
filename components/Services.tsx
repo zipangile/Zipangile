@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import CampaignHeadline from "./CampaignHeadline";
 import PortraitCard from "./PortraitCard";
@@ -85,8 +86,9 @@ const SERVICES = [
 ];
 
 function scrollToBooking(e: React.MouseEvent) {
+  // Multi-page: booking lives at /book now
   e.preventDefault();
-  document.getElementById("booking")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  window.location.href = "/book";
 }
 
 /**
@@ -169,8 +171,9 @@ function ServiceCard({
   );
 }
 
-export default function Services() {
+export default function Services({ preview = false }: { preview?: boolean }) {
   const [haloAccent, setHaloAccent] = useState("#F5A623");
+  const shown = preview ? SERVICES.slice(0, 4) : SERVICES;
 
   return (
     <section id="services" className="py-24 md:py-32 bg-transparent relative px-6">
@@ -217,9 +220,24 @@ export default function Services() {
           </div>
 
           <div className="flex flex-col gap-6">
-            {SERVICES.map((s, i) => (
+            {shown.map((s, i) => (
               <ServiceCard key={s.title} s={s} index={i} onActive={setHaloAccent} />
             ))}
+
+            {preview && (
+              <Link
+                href="/services"
+                className="glass-panel p-8 flex items-center justify-between group hover:border-brand-400/40 transition-all"
+              >
+                <div>
+                  <p className="font-mono text-[11px] tracking-[0.2em] uppercase text-brand-300 mb-2">
+                    + {SERVICES.length - 4} more services
+                  </p>
+                  <p className="text-white font-medium">See the full lineup</p>
+                </div>
+                <ArrowRight className="w-5 h-5 text-brand-300 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            )}
 
             <motion.div
               initial={{ opacity: 0, y: 32, filter: "blur(12px)" }}
