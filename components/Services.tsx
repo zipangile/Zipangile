@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import CampaignHeadline from "./CampaignHeadline";
-import CutoutFigure from "./CutoutFigure";
 import {
   PhoneCall,
   Globe,
@@ -104,7 +103,7 @@ function ServiceCard({
 }: {
   s: (typeof SERVICES)[number];
   index: number;
-  onActive: (accent: string) => void;
+  onActive?: (accent: string) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { margin: "-40% 0px -40% 0px" });
@@ -114,7 +113,7 @@ function ServiceCard({
   React.useEffect(() => {
     if (inView && !wasActive.current) {
       wasActive.current = true;
-      onActive(s.accent);
+      onActive?.(s.accent);
     } else if (!inView) {
       wasActive.current = false;
     }
@@ -172,7 +171,6 @@ function ServiceCard({
 }
 
 export default function Services({ preview = false }: { preview?: boolean }) {
-  const [haloAccent, setHaloAccent] = useState("#F5A623");
   const shown = preview ? SERVICES.slice(0, 4) : SERVICES;
 
   return (
@@ -202,26 +200,11 @@ export default function Services({ preview = false }: { preview?: boolean }) {
           </p>
         </div>
 
-        {/* Scrollytelling: sticky portrait + scrolling cards */}
-        <div className="grid lg:grid-cols-[340px_1fr] gap-10 items-start">
-          <div className="hidden lg:block sticky top-28">
-            <CutoutFigure
-              src="/images/cutout-2-transparent.png"
-              alt="Zipangile founder celebrating — arms raised in joy"
-              accent={haloAccent}
-              parallax={0}
-              maxHeight={480}
-            />
-            <p className="mt-6 text-sm text-[#71717A] font-light leading-relaxed text-center">
-              Each service, priced in the open.
-              <br />
-              Scroll — the studio responds.
-            </p>
-          </div>
-
+        {/* Services grid — fluid carries the visual */}
+        <div className="max-w-4xl mx-auto">
           <div className="flex flex-col gap-6">
             {shown.map((s, i) => (
-              <ServiceCard key={s.title} s={s} index={i} onActive={setHaloAccent} />
+              <ServiceCard key={s.title} s={s} index={i} />
             ))}
 
             {preview && (

@@ -7,7 +7,6 @@ import { ArrowRight, Terminal } from "lucide-react";
 import TiltCard from "./TiltCard";
 import MagneticButton from "./MagneticButton";
 import CampaignHeadline from "./CampaignHeadline";
-import CutoutFigure from "./CutoutFigure";
 
 const BUILD_LINES = [
   { text: "$ zipangile build --scope mvp", tone: "cmd" },
@@ -51,9 +50,9 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto w-full">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
+      <div className="relative z-10 max-w-4xl mx-auto w-full">
+        <div className="flex flex-col items-center text-center">
+          <div className="flex flex-col items-center text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
@@ -71,7 +70,7 @@ export default function Hero() {
             >
               <CampaignHeadline
                 as="h1"
-                align="responsive"
+                align="center"
                 lines={[
                   { text: "WE BUILD" },
                   { text: "DIGITAL" },
@@ -122,21 +121,6 @@ export default function Hero() {
               </MagneticButton>
             </motion.div>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 40, filter: "blur(12px)" }}
-            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 hidden lg:block"
-          >
-            <CutoutFigure
-              src="/images/cutout-1-transparent.png"
-              alt="Zipangile founder mid-leap with a laptop — building with joy"
-              accent="#F36D14"
-              parallax={30}
-              maxHeight={620}
-            />
-          </motion.div>
         </div>
 
         <motion.div

@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CampaignHeadline from "./CampaignHeadline";
-import CutoutFigure from "./CutoutFigure";
 import {
   ArrowLeft,
   ArrowRight,
@@ -79,9 +78,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
       <div className="absolute -top-32 left-1/4 w-[500px] h-[400px] rounded-full bg-brand-600/10 blur-[130px] pointer-events-none" />
       <div className="absolute -bottom-32 right-1/4 w-[500px] h-[400px] rounded-full bg-brandpink-600/10 blur-[130px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-[1fr_300px] gap-10 items-start">
-          <div className="min-w-0">
+      <div className="relative z-10 max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <p className="font-mono text-xs text-brand-300 tracking-[0.3em] uppercase mb-4">
             IDEA → QUOTE
@@ -377,21 +374,6 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
               Start over
             </button>
           )}
-        </div>
-          </div>
-          <aside className="hidden lg:block sticky top-28">
-            <CutoutFigure
-              src="/images/cutout-3-transparent.png"
-              alt="Zipangile designer holding a tablet — thoughtful and confident"
-              accent="#FF2E9A"
-              parallax={28}
-              maxHeight={480}
-            />
-            <p className="mt-5 text-sm text-[#A1A1AA] font-light leading-relaxed">
-              Every quote is itemized and fixed before we start — the price you
-              see is the price you pay.
-            </p>
-          </aside>
         </div>
       </div>
     </section>
