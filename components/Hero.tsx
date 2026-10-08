@@ -7,7 +7,7 @@ import { ArrowRight, Terminal } from "lucide-react";
 import TiltCard from "./TiltCard";
 import MagneticButton from "./MagneticButton";
 import CampaignHeadline from "./CampaignHeadline";
-import PortraitCard from "./PortraitCard";
+import CutoutFigure from "./CutoutFigure";
 
 const BUILD_LINES = [
   { text: "$ zipangile build --scope mvp", tone: "cmd" },
@@ -129,12 +129,12 @@ export default function Hero() {
             transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 hidden lg:block"
           >
-            <PortraitCard
-              src="/images/portrait-create.webp"
-              alt="Zipangile campaign portrait — woman in sunglasses against an orange and purple sunset gradient"
-              caption="THE POWER TO CREATE"
+            <CutoutFigure
+              src="/images/cutout-1-transparent.png"
+              alt="Zipangile founder mid-leap with a laptop — building with joy"
               accent="#F36D14"
               parallax={30}
+              maxHeight={620}
             />
           </motion.div>
         </div>

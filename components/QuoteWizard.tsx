@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CampaignHeadline from "./CampaignHeadline";
-import PortraitCard from "./PortraitCard";
+import CutoutFigure from "./CutoutFigure";
 import {
   ArrowLeft,
   ArrowRight,
@@ -380,12 +380,12 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
         </div>
           </div>
           <aside className="hidden lg:block sticky top-28">
-            <PortraitCard
-              src="/images/portrait-grow.webp"
-              alt="Zipangile campaign portrait — smiling founder against a peach and pink gradient"
-              caption="THE POWER TO GROW"
+            <CutoutFigure
+              src="/images/cutout-3-transparent.png"
+              alt="Zipangile designer holding a tablet — thoughtful and confident"
               accent="#FF2E9A"
               parallax={28}
+              maxHeight={480}
             />
             <p className="mt-5 text-sm text-[#A1A1AA] font-light leading-relaxed">
               Every quote is itemized and fixed before we start — the price you

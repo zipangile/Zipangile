@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, ArrowUpRight } from "lucide-react";
 import CampaignHeadline from "./CampaignHeadline";
-import PortraitCard from "./PortraitCard";
+import CutoutFigure from "./CutoutFigure";
 
 export default function CtaSection() {
   return (
@@ -66,12 +66,12 @@ export default function CtaSection() {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="hidden lg:block"
         >
-          <PortraitCard
-            src="/images/portrait-beyou.webp"
-            alt="Zipangile campaign portrait — joyful young man with locs against a blue gradient"
-            caption="THE POWER TO BE YOU"
+          <CutoutFigure
+            src="/images/cutout-4-transparent.png"
+            alt="Zipangile developer pointing at a phone with excitement"
             accent="#3B82F6"
             parallax={28}
+            maxHeight={480}
           />
         </motion.div>
         </div>

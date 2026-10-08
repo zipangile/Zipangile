@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import CampaignHeadline from "./CampaignHeadline";
-import PortraitCard from "./PortraitCard";
+import CutoutFigure from "./CutoutFigure";
 import {
   PhoneCall,
   Globe,
@@ -205,12 +205,12 @@ export default function Services({ preview = false }: { preview?: boolean }) {
         {/* Scrollytelling: sticky portrait + scrolling cards */}
         <div className="grid lg:grid-cols-[340px_1fr] gap-10 items-start">
           <div className="hidden lg:block sticky top-28">
-            <PortraitCard
-              src="/images/portrait-build.webp"
-              alt="Zipangile engineer holding a laptop against a gold and teal gradient"
-              caption="THE POWER TO BUILD"
+            <CutoutFigure
+              src="/images/cutout-2-transparent.png"
+              alt="Zipangile founder celebrating — arms raised in joy"
               accent={haloAccent}
               parallax={0}
+              maxHeight={480}
             />
             <p className="mt-6 text-sm text-[#71717A] font-light leading-relaxed text-center">
               Each service, priced in the open.
