@@ -30,7 +30,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-mono text-[11px] text-indigo-300 border border-indigo-500/30 rounded-full px-5 py-2 bg-indigo-950/20 backdrop-blur-sm mb-10 tracking-[0.3em] uppercase"
+          className="font-mono text-[11px] text-brand-300 border border-brand-500/30 rounded-full px-5 py-2 bg-brand-950/20 backdrop-blur-sm mb-10 tracking-[0.3em] uppercase"
         >
           Studio // Systems Online
         </motion.div>
@@ -39,11 +39,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-[#F4F4F5] tracking-[-0.045em] leading-[1.0] mb-8"
+          className="font-display text-5xl md:text-7xl lg:text-[5.5rem] text-[#F4F4F5] leading-[1.05] mb-8"
         >
           We build digital products
           <br />
-          <span className="bg-gradient-to-r from-indigo-300 via-violet-300 to-indigo-300 bg-clip-text text-transparent">
+          <span className="text-gradient-brand">
             that matter.
           </span>
         </motion.h1>
@@ -67,15 +67,15 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center gap-4 mb-20"
         >
           <button
-            onClick={() => handleScroll("contact")}
-            className="group inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-medium text-sm rounded-xl hover:scale-[1.03] active:scale-[0.98] transition-all shadow-[0_0_30px_rgba(255,255,255,0.12)] hover:shadow-[0_0_44px_rgba(255,255,255,0.28)]"
+            onClick={() => handleScroll("quote")}
+            className="btn-gradient-brand group inline-flex items-center gap-2 px-8 py-4 text-white font-medium text-sm rounded-xl"
           >
             Start your build
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
           <button
             onClick={() => handleScroll("flagship")}
-            className="px-8 py-4 border border-white/15 text-[#EDEDED] font-medium text-sm rounded-xl hover:border-indigo-400/60 hover:text-white active:scale-[0.98] transition-all"
+            className="px-8 py-4 border border-white/15 text-[#EDEDED] font-medium text-sm rounded-xl hover:border-brand-400/60 hover:text-white active:scale-[0.98] transition-all"
           >
             See our flagship
           </button>

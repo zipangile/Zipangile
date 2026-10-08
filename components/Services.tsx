@@ -80,15 +80,15 @@ function scrollToBooking(e: React.MouseEvent) {
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 md:py-32 bg-black relative px-6">
-      <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
+    <section id="services" className="py-24 md:py-32 bg-background relative px-6">
+      <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-brand-500/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 md:mb-20">
-          <p className="font-mono text-xs text-indigo-400 tracking-widest uppercase mb-4">
+          <p className="font-mono text-xs text-brand-400 tracking-widest uppercase mb-4">
             STUDIO SERVICES
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#EDEDED] font-sans max-w-3xl">
+          <h2 className="font-display text-3xl md:text-5xl  text-[#EDEDED] max-w-3xl">
             Priced in the open. Built to last.
           </h2>
           <p className="text-base md:text-lg text-[#A1A1AA] font-light leading-relaxed mt-6 max-w-2xl">
@@ -110,20 +110,20 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.7, delay: (i % 2) * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="relative overflow-hidden bg-surface border border-border rounded-xl p-8 md:p-10 hover:border-indigo-500/40 transition-all duration-300 group flex flex-col"
+                className="relative overflow-hidden bg-surface border border-border rounded-xl p-8 md:p-10 hover:border-brand-500/40 transition-all duration-300 group flex flex-col"
               >
-                <div className="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-indigo-600/10 blur-[70px] pointer-events-none group-hover:bg-indigo-600/15 transition-all duration-500" />
+                <div className="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-brand-600/10 blur-[70px] pointer-events-none group-hover:bg-brand-600/15 transition-all duration-500" />
                 <div className="flex items-start justify-between mb-8">
                   <div
                     className={`w-12 h-12 rounded-lg border flex items-center justify-center ${
                       isIndigo
-                        ? "bg-indigo-500/10 border-indigo-500/30"
-                        : "bg-violet-500/10 border-violet-500/30"
+                        ? "bg-brand-500/10 border-brand-500/30"
+                        : "bg-brandpink-500/10 border-brandpink-500/30"
                     }`}
                   >
-                    <Icon className={`w-6 h-6 ${isIndigo ? "text-indigo-400" : "text-violet-400"}`} />
+                    <Icon className={`w-6 h-6 ${isIndigo ? "text-brand-400" : "text-brandpink-400"}`} />
                   </div>
-                  <div className="font-mono text-[11px] tracking-wider text-indigo-300 border border-indigo-500/30 bg-indigo-500/10 rounded-full px-4 py-1.5 whitespace-nowrap">
+                  <div className="font-mono text-[11px] tracking-wider text-brand-300 border border-brand-500/30 bg-brand-500/10 rounded-full px-4 py-1.5 whitespace-nowrap">
                     {s.price}
                   </div>
                 </div>
@@ -140,7 +140,7 @@ export default function Services() {
                   {s.cta && (
                     <button
                       onClick={scrollToBooking}
-                      className="inline-flex items-center gap-1.5 text-[12px] font-mono tracking-wider uppercase text-indigo-300 hover:text-white transition-colors"
+                      className="inline-flex items-center gap-1.5 text-[12px] font-mono tracking-wider uppercase text-brand-300 hover:text-white transition-colors"
                     >
                       Book now
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -156,7 +156,7 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="relative overflow-hidden rounded-xl p-8 md:p-10 border border-indigo-500/30 bg-gradient-to-br from-indigo-600/15 to-violet-600/10 flex flex-col justify-between hover:border-indigo-400/60 transition-all duration-300 group"
+            className="relative overflow-hidden rounded-xl p-8 md:p-10 border border-brand-500/30 bg-gradient-to-br from-brand-600/15 to-brandpink-600/10 flex flex-col justify-between hover:border-brand-400/60 transition-all duration-300 group"
           >
             <div>
               <h3 className="text-xl md:text-2xl font-bold text-[#F4F4F5] mb-3 font-sans tracking-tight">

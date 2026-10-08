@@ -5,7 +5,7 @@ import { Mail, Phone } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/[0.06] bg-[#050505] py-14 px-6">
+    <footer className="border-t border-white/[0.06] bg-background py-14 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-10">
           <div>
@@ -24,14 +24,14 @@ export default function Footer() {
               href="mailto:support@zipangile.tech"
               className="inline-flex items-center gap-2.5 text-sm text-[#C9C9CF] hover:text-white transition-colors"
             >
-              <Mail className="w-4 h-4 text-indigo-300" />
+              <Mail className="w-4 h-4 text-brand-300" />
               support@zipangile.tech
             </a>
             <a
               href="tel:+260972111440"
               className="inline-flex items-center gap-2.5 text-sm text-[#C9C9CF] hover:text-white transition-colors"
             >
-              <Phone className="w-4 h-4 text-indigo-300" />
+              <Phone className="w-4 h-4 text-brand-300" />
               +260 972 111440
             </a>
           </div>

@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { CalendarCheck, CheckCircle2, Loader2, Mail, ArrowRight } from "lucide-react";
+import { CalendarCheck, CheckCircle2, Loader2, Mail, ArrowRight, ReceiptText } from "lucide-react";
+import { loadQuote, formatZMW, type SavedQuote } from "../lib/quoteCalculator";
 
 const SERVICE_OPTIONS = [
   "Tech Consultation — K1,500/hr · K5,000/half-day",
@@ -43,6 +44,7 @@ export default function BookingForm() {
   const [errors, setErrors] = useState<Partial<FormState>>({});
   const [submitting, setSubmitting] = useState(false);
   const [booking, setBooking] = useState<Booking | null>(null);
+  const [quote, setQuote] = useState<SavedQuote | null>(null);
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -53,6 +55,10 @@ export default function BookingForm() {
     } catch {
       /* ignore */
     }
+    setQuote(loadQuote());
+    const onQuote = (e: Event) => setQuote((e as CustomEvent<SavedQuote>).detail);
+    window.addEventListener("zipangile:quote-ready", onQuote);
+    return () => window.removeEventListener("zipangile:quote-ready", onQuote);
   }, []);
 
   const set = (k: keyof FormState) => (
@@ -84,8 +90,13 @@ export default function BookingForm() {
     // Simulate a short round-trip; the booking is stored locally and the
     // confirmation email draft is prepared for the visitor to send.
     setTimeout(() => {
+      const notesWithQuote =
+        quote && !form.notes.includes(quote.reference)
+          ? `[Quote ${quote.reference}: ${quote.breakdown.baseLabel}, ${formatZMW(quote.breakdown.low)}–${formatZMW(quote.breakdown.high)}] ${form.notes}`.trim()
+          : form.notes;
       const b: Booking = {
         ...form,
+        notes: notesWithQuote,
         reference: makeReference(),
         createdAt: new Date().toISOString(),
       };
@@ -108,20 +119,20 @@ export default function BookingForm() {
   }
 
   const inputCls =
-    "w-full px-4 py-3.5 bg-white/[0.04] border border-white/10 rounded-xl text-[15px] text-[#EDEDED] placeholder:text-[#52525B] focus:outline-none focus:border-indigo-400/70 focus:bg-white/[0.06] transition-all";
+    "w-full px-4 py-3.5 bg-white/[0.04] border border-white/10 rounded-xl text-[15px] text-[#EDEDED] placeholder:text-[#52525B] focus:outline-none focus:border-brand-400/70 focus:bg-white/[0.06] transition-all";
   const labelCls =
     "block font-mono text-[11px] tracking-[0.2em] uppercase text-[#A1A1AA] mb-2.5";
 
   return (
-    <section id="booking" className="py-28 md:py-40 bg-[#050505] relative px-6 border-t border-white/[0.06] overflow-hidden">
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-indigo-600/10 blur-[120px] pointer-events-none" />
+    <section id="booking" className="py-28 md:py-40 bg-background relative px-6 border-t border-white/[0.06] overflow-hidden">
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-brand-600/10 blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl mx-auto">
         <div className="text-center mb-14 md:mb-16">
-          <p className="font-mono text-xs text-indigo-400 tracking-[0.3em] uppercase mb-4">
+          <p className="font-mono text-xs text-brand-400 tracking-[0.3em] uppercase mb-4">
             BOOKING
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#F4F4F5] font-sans">
+          <h2 className="font-display text-3xl md:text-5xl  text-[#F4F4F5]">
             Book a consultation.
           </h2>
           <p className="text-base md:text-lg text-[#A1A1AA] font-light leading-relaxed mt-6 max-w-2xl mx-auto">
@@ -136,15 +147,15 @@ export default function BookingForm() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-2xl border border-indigo-500/30 bg-gradient-to-br from-indigo-600/15 to-violet-600/10 p-8 md:p-12 text-center"
+            className="rounded-2xl border border-brand-500/30 bg-gradient-to-br from-brand-600/15 to-brandpink-600/10 p-8 md:p-12 text-center"
           >
-            <CheckCircle2 className="w-12 h-12 text-indigo-300 mx-auto mb-6" />
+            <CheckCircle2 className="w-12 h-12 text-brand-300 mx-auto mb-6" />
             <h3 className="text-2xl md:text-3xl font-bold text-[#F4F4F5] tracking-tight mb-3">
               Booking received.
             </h3>
             <p className="text-[#A1A1AA] font-light leading-relaxed max-w-xl mx-auto mb-8">
               Your reference is{" "}
-              <span className="font-mono text-indigo-300 tracking-wider">{booking.reference}</span>.
+              <span className="font-mono text-brand-300 tracking-wider">{booking.reference}</span>.
               We&apos;ll confirm <strong className="text-[#EDEDED] font-medium">{booking.date}</strong>{" "}
               for <strong className="text-[#EDEDED] font-medium">{booking.service.split(" — ")[0]}</strong>{" "}
               within two working days at <strong className="text-[#EDEDED] font-medium">{booking.contact}</strong>.
@@ -183,6 +194,18 @@ export default function BookingForm() {
             className="rounded-2xl border border-white/[0.08] bg-surface p-8 md:p-12"
             noValidate
           >
+            {quote && (
+              <div className="flex items-center gap-4 rounded-xl border border-brand-500/30 bg-brand-500/[0.07] px-5 py-4 mb-8">
+                <ReceiptText className="w-5 h-5 text-brand-300 shrink-0" />
+                <div className="text-sm">
+                  <span className="font-mono text-brand-300 tracking-wider">{quote.reference}</span>
+                  <span className="text-[#A1A1AA] font-light">
+                    {" "}· {quote.breakdown.baseLabel} · {formatZMW(quote.breakdown.low)}–
+                    {formatZMW(quote.breakdown.high)} — attached to this booking.
+                  </span>
+                </div>
+              </div>
+            )}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label htmlFor="bk-name" className={labelCls}>

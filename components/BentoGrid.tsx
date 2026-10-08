@@ -34,15 +34,15 @@ function GlowCard({ children, className = "" }: { children: React.ReactNode; cla
 
 export default function BentoGrid() {
   return (
-    <section id="flagship" className="py-28 md:py-40 bg-black relative px-6 border-t border-white/[0.06]">
-      <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
+    <section id="flagship" className="py-28 md:py-40 bg-background relative px-6 border-t border-white/[0.06]">
+      <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-brand-500/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 md:mb-20">
-          <p className="font-mono text-xs text-indigo-300 tracking-[0.3em] uppercase mb-5">
+          <p className="font-mono text-xs text-brand-300 tracking-[0.3em] uppercase mb-5">
             Flagship // Public-goods proof
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-[-0.04em] text-[#F4F4F5] font-sans max-w-3xl leading-[1.05]">
+          <h2 className="font-display text-3xl md:text-5xl  text-[#F4F4F5] max-w-3xl leading-[1.05]">
             The product that proves how we build.
           </h2>
           <p className="text-base md:text-lg text-[#A1A1AA] font-light leading-relaxed mt-6 max-w-2xl">
@@ -56,11 +56,11 @@ export default function BentoGrid() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 bento-glow-border p-[1px]">
             <div className="bg-surface rounded-xl p-8 md:p-12 h-full flex flex-col justify-between relative overflow-hidden group">
-              <div className="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-indigo-600/10 blur-[80px] pointer-events-none group-hover:bg-indigo-600/15 transition-all duration-500" />
+              <div className="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-brand-600/10 blur-[80px] pointer-events-none group-hover:bg-brand-600/15 transition-all duration-500" />
 
               <div>
-                <div className="w-12 h-12 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center mb-8">
-                  <Server className="w-6 h-6 text-indigo-400" />
+                <div className="w-12 h-12 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center mb-8">
+                  <Server className="w-6 h-6 text-brand-400" />
                 </div>
 
                 <h3 className="text-2xl md:text-4xl font-bold text-[#EDEDED] mb-4 font-sans tracking-tight">
@@ -77,7 +77,7 @@ export default function BentoGrid() {
                   href="https://ubuntuplay.zipangile.tech/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-sans text-sm font-medium rounded-lg hover:from-indigo-600 hover:to-violet-700 active:scale-[0.98] transition-all shadow-[0_4px_20px_rgba(99,102,241,0.25)]"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-brand-500 to-brandpink-600 text-white font-sans text-sm font-medium rounded-lg hover:from-brand-600 hover:to-brandpink-700 active:scale-[0.98] transition-all shadow-[0_4px_20px_rgba(151,33,255,0.25)]"
                 >
                   Launch Ubuntu Play
                   <ArrowRight className="w-4 h-4" />
@@ -88,8 +88,8 @@ export default function BentoGrid() {
 
           <GlowCard className="h-[320px] lg:h-auto">
             <div>
-              <div className="w-12 h-12 rounded-lg bg-violet-500/10 border border-violet-500/30 flex items-center justify-center mb-6">
-                <Cpu className="w-6 h-6 text-violet-400" />
+              <div className="w-12 h-12 rounded-lg bg-brandpink-500/10 border border-brandpink-500/30 flex items-center justify-center mb-6">
+                <Cpu className="w-6 h-6 text-brandpink-400" />
               </div>
               <h4 className="text-lg font-bold text-[#EDEDED] mb-2 font-sans tracking-tight">
                 Zero-Dependency Operations
@@ -105,8 +105,8 @@ export default function BentoGrid() {
 
           <GlowCard className="h-[320px] lg:h-auto">
             <div>
-              <div className="w-12 h-12 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center mb-6">
-                <Database className="w-6 h-6 text-indigo-400" />
+              <div className="w-12 h-12 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center mb-6">
+                <Database className="w-6 h-6 text-brand-400" />
               </div>
               <h4 className="text-lg font-bold text-[#EDEDED] mb-2 font-sans tracking-tight">
                 Local AI & Automation
@@ -123,8 +123,8 @@ export default function BentoGrid() {
           <GlowCard className="lg:col-span-2 h-[320px] lg:h-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full items-center">
               <div>
-                <div className="w-12 h-12 rounded-lg bg-violet-500/10 border border-violet-500/30 flex items-center justify-center mb-6">
-                  <Share2 className="w-6 h-6 text-violet-400" />
+                <div className="w-12 h-12 rounded-lg bg-brandpink-500/10 border border-brandpink-500/30 flex items-center justify-center mb-6">
+                  <Share2 className="w-6 h-6 text-brandpink-400" />
                 </div>
                 <h4 className="text-lg font-bold text-[#EDEDED] mb-2 font-sans tracking-tight">
                   Open Source at the Core

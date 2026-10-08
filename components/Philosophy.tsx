@@ -5,13 +5,13 @@ import { motion } from "framer-motion";
 
 export default function Philosophy() {
   return (
-    <section id="mission" className="py-24 md:py-40 bg-black relative px-6 border-t border-border">
+    <section id="mission" className="py-24 md:py-40 bg-background relative px-6 border-t border-border">
       <div className="absolute inset-y-0 left-10 md:left-24 w-[1px] bg-border/40 pointer-events-none" />
       <div className="absolute inset-y-0 right-10 md:right-24 w-[1px] bg-border/40 pointer-events-none" />
 
       <div className="max-w-5xl mx-auto relative z-10 py-12">
-        <div className="pl-6 md:pl-12 border-l-2 border-indigo-500/50">
-          <p className="font-mono text-xs text-indigo-400 tracking-[0.2em] uppercase mb-8">
+        <div className="pl-6 md:pl-12 border-l-2 border-brand-500/50">
+          <p className="font-mono text-xs text-brand-400 tracking-[0.2em] uppercase mb-8">
             {"// OUR PHILOSOPHY"}
           </p>
 

@@ -33,19 +33,19 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section id="process" className="py-24 md:py-32 bg-black relative px-6 border-t border-border">
+    <section id="process" className="py-24 md:py-32 bg-background relative px-6 border-t border-border">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 md:mb-20">
-          <p className="font-mono text-xs text-indigo-400 tracking-widest uppercase mb-4">
+          <p className="font-mono text-xs text-brand-400 tracking-widest uppercase mb-4">
             HOW IT WORKS
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#EDEDED] font-sans max-w-3xl">
+          <h2 className="font-display text-3xl md:text-5xl  text-[#EDEDED] max-w-3xl">
             A process built for founders, not committees.
           </h2>
         </div>
 
         <div className="relative">
-          <div className="hidden lg:block absolute top-6 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent pointer-events-none" />
+          <div className="hidden lg:block absolute top-6 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-brand-500/30 to-transparent pointer-events-none" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6">
             {STEPS.map((s, i) => (
               <motion.div
@@ -56,8 +56,8 @@ export default function HowItWorks() {
                 transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className="relative"
               >
-                <div className="w-12 h-12 rounded-full bg-black border border-indigo-500/40 flex items-center justify-center mb-6 relative z-10">
-                  <span className="font-mono text-sm text-indigo-400">{s.n}</span>
+                <div className="w-12 h-12 rounded-full bg-background border border-brand-500/40 flex items-center justify-center mb-6 relative z-10">
+                  <span className="font-mono text-sm text-brand-400">{s.n}</span>
                 </div>
                 <h3 className="text-lg font-bold text-[#EDEDED] mb-2 font-sans tracking-tight">
                   {s.title}
