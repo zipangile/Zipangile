@@ -4,6 +4,7 @@ import Hero from "../components/Hero";
 import Services from "../components/Services";
 import HowItWorks from "../components/HowItWorks";
 import EngagementModels from "../components/EngagementModels";
+import BookingForm from "../components/BookingForm";
 import BentoGrid from "../components/BentoGrid";
 import Philosophy from "../components/Philosophy";
 import CtaSection from "../components/CtaSection";
@@ -17,6 +18,7 @@ export default function Home() {
       <Services />
       <HowItWorks />
       <EngagementModels />
+      <BookingForm />
       <BentoGrid />
       <Philosophy />
       <CtaSection />

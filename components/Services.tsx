@@ -2,38 +2,81 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Rocket, LayoutTemplate, WifiOff, BrainCircuit } from "lucide-react";
+import {
+  PhoneCall,
+  Globe,
+  Rocket,
+  LayoutDashboard,
+  CreditCard,
+  GraduationCap,
+  Wrench,
+  ArrowRight,
+} from "lucide-react";
 
 const SERVICES = [
+  {
+    icon: PhoneCall,
+    accent: "indigo",
+    title: "Tech Consultation",
+    price: "K1,500 / hour · K5,000 / half-day",
+    tag: "ADVISE // 01",
+    body: "Strategy, architecture reviews, and digital transformation advice from people who actually ship. One honest session can save you a quarter of building the wrong thing.",
+    cta: true,
+  },
+  {
+    icon: Globe,
+    accent: "violet",
+    title: "Website Development",
+    price: "from K8,000",
+    tag: "BUILD // 02",
+    body: "Business sites and landing pages that load fast, rank well, and convert. Designed, built, and deployed — with content you can update yourself.",
+  },
   {
     icon: Rocket,
     accent: "indigo",
     title: "MVP Development",
-    tag: "BUILD // 01",
+    price: "from K25,000",
+    tag: "BUILD // 03",
     body: "From a validated idea to a working product in weeks, not quarters. We scope tightly, build the smallest thing that proves the bet, and ship something you can put in front of users or investors.",
   },
   {
-    icon: LayoutTemplate,
+    icon: LayoutDashboard,
     accent: "violet",
     title: "Custom Platforms",
-    tag: "BUILD // 02",
+    price: "quoted per scope",
+    tag: "BUILD // 04",
     body: "Two-sided platforms, training systems, facilitator consoles, dashboards. We design the full loop — the people who run it and the people who use it — and build both sides to work together.",
   },
   {
-    icon: WifiOff,
+    icon: CreditCard,
     accent: "indigo",
-    title: "Offline-First Systems",
-    tag: "BUILD // 03",
-    body: "Our specialty. Products engineered to run on local networks, low-power hardware, and intermittent connectivity. If your users can't count on the internet, we build for that from day one.",
+    title: "Payment Integration",
+    price: "K5,000 flat",
+    tag: "WIRE // 05",
+    body: "Mobile money (MTN, Airtel, Zamtel), cards, and bank transfer wired into your site or app through Lenco — with webhooks, receipts, and reconciliation that just works.",
   },
   {
-    icon: BrainCircuit,
+    icon: GraduationCap,
     accent: "violet",
-    title: "AI Integration",
-    tag: "BUILD // 04",
-    body: "On-device and local AI — tutoring, translation, automation, assessment — without a cloud dependency for every inference. Practical AI that works where your users actually are.",
+    title: "Team Training",
+    price: "K3,000 / person / day",
+    tag: "ENABLE // 06",
+    body: "Practical workshops for your team — digital tools, product thinking, AI in the workplace. Hands-on, in plain language, built around your actual work.",
+  },
+  {
+    icon: Wrench,
+    accent: "indigo",
+    title: "Maintenance Retainer",
+    price: "from K2,500 / month",
+    tag: "CARE // 07",
+    body: "Ongoing support for the things we built together — updates, monitoring, small improvements, and someone to call when it matters. No ticket black holes.",
   },
 ];
+
+function scrollToBooking(e: React.MouseEvent) {
+  e.preventDefault();
+  document.getElementById("booking")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 export default function Services() {
   return (
@@ -46,12 +89,13 @@ export default function Services() {
             STUDIO SERVICES
           </p>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#EDEDED] font-sans max-w-3xl">
-            We build the product. You run the business.
+            Priced in the open. Built to last.
           </h2>
           <p className="text-base md:text-lg text-[#A1A1AA] font-light leading-relaxed mt-6 max-w-2xl">
-            Zipangile is a venture studio and engineering firm in Lusaka. Bring
-            us a validated idea or an operational problem — we design and build
-            the digital product that solves it.
+            Zipangile is a venture studio and engineering firm in Lusaka. Every
+            service below has a real price — no &ldquo;contact us for a
+            quote&rdquo; games. Every build is engineered offline-first where it
+            matters, with practical AI integration when it earns its place.
           </p>
         </div>
 
@@ -66,30 +110,71 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.7, delay: (i % 2) * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="relative overflow-hidden bg-surface border border-border rounded-xl p-8 md:p-10 hover:border-indigo-500/40 transition-all duration-300 group"
+                className="relative overflow-hidden bg-surface border border-border rounded-xl p-8 md:p-10 hover:border-indigo-500/40 transition-all duration-300 group flex flex-col"
               >
                 <div className="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-indigo-600/10 blur-[70px] pointer-events-none group-hover:bg-indigo-600/15 transition-all duration-500" />
-                <div
-                  className={`w-12 h-12 rounded-lg border flex items-center justify-center mb-8 ${
-                    isIndigo
-                      ? "bg-indigo-500/10 border-indigo-500/30"
-                      : "bg-violet-500/10 border-violet-500/30"
-                  }`}
-                >
-                  <Icon className={`w-6 h-6 ${isIndigo ? "text-indigo-400" : "text-violet-400"}`} />
+                <div className="flex items-start justify-between mb-8">
+                  <div
+                    className={`w-12 h-12 rounded-lg border flex items-center justify-center ${
+                      isIndigo
+                        ? "bg-indigo-500/10 border-indigo-500/30"
+                        : "bg-violet-500/10 border-violet-500/30"
+                    }`}
+                  >
+                    <Icon className={`w-6 h-6 ${isIndigo ? "text-indigo-400" : "text-violet-400"}`} />
+                  </div>
+                  <div className="font-mono text-[11px] tracking-wider text-indigo-300 border border-indigo-500/30 bg-indigo-500/10 rounded-full px-4 py-1.5 whitespace-nowrap">
+                    {s.price}
+                  </div>
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold text-[#EDEDED] mb-3 font-sans tracking-tight">
                   {s.title}
                 </h3>
-                <p className="text-sm md:text-base text-[#A1A1AA] font-light leading-relaxed">
+                <p className="text-sm md:text-base text-[#A1A1AA] font-light leading-relaxed flex-1">
                   {s.body}
                 </p>
-                <div className="font-mono text-[10px] text-[#52525B] uppercase tracking-widest mt-8">
-                  {s.tag}
+                <div className="flex items-center justify-between mt-8">
+                  <div className="font-mono text-[10px] text-[#52525B] uppercase tracking-widest">
+                    {s.tag}
+                  </div>
+                  {s.cta && (
+                    <button
+                      onClick={scrollToBooking}
+                      className="inline-flex items-center gap-1.5 text-[12px] font-mono tracking-wider uppercase text-indigo-300 hover:text-white transition-colors"
+                    >
+                      Book now
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  )}
                 </div>
               </motion.div>
             );
           })}
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="relative overflow-hidden rounded-xl p-8 md:p-10 border border-indigo-500/30 bg-gradient-to-br from-indigo-600/15 to-violet-600/10 flex flex-col justify-between hover:border-indigo-400/60 transition-all duration-300 group"
+          >
+            <div>
+              <h3 className="text-xl md:text-2xl font-bold text-[#F4F4F5] mb-3 font-sans tracking-tight">
+                Not sure what fits?
+              </h3>
+              <p className="text-sm md:text-base text-[#C9C9CF] font-light leading-relaxed">
+                Start with a consultation. We&apos;ll tell you honestly whether
+                you need us at all — and what the cheapest correct option is.
+              </p>
+            </div>
+            <button
+              onClick={scrollToBooking}
+              className="mt-8 inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-black font-medium text-sm rounded-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
+            >
+              Book a consultation
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </motion.div>
         </div>
       </div>
     </section>

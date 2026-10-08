@@ -8,6 +8,7 @@ const LINKS = [
   { label: "Services", id: "services" },
   { label: "Process", id: "process" },
   { label: "Models", id: "models" },
+  { label: "Book", id: "booking" },
   { label: "Flagship", id: "flagship" },
   { label: "Mission", id: "mission" },
 ];
