@@ -124,6 +124,11 @@ function hexToF (hex) {
 const PHASE_COUNT = FLUID_PHASES.length;
 let currentPalette = FLUID_PHASES[0].colors.map(hexToF);
 let palettePos = 0;
+let paletteTarget = 0;
+let calmFactor = 1;        // 1 = full energy, <1 = damped (forms in focus)
+let calmTarget = 1;
+const PALETTE_LERP = 0.07; // Lusion's cardinal rule: lerp everything
+const CALM_LERP = 0.05;
 
 /*
  * Shift the fluid palette along the campaign phases. p in [0, PHASE_COUNT];
@@ -132,9 +137,17 @@ let palettePos = 0;
  * naturally, so shifts crossfade instead of snapping.
  */
 function setPalettePosition (p) {
-    p = Math.max(0, Math.min(PHASE_COUNT, p));
-    if (Math.abs(p - palettePos) < 0.005) return;
-    palettePos = p;
+    paletteTarget = Math.max(0, Math.min(PHASE_COUNT, p));
+}
+function setCalmMode (calm) {
+    calmTarget = calm ? 0.25 : 1;
+}
+function easePalette (dt) {
+    // Lerp position toward target — raw scroll values feel twitchy
+    palettePos += (paletteTarget - palettePos) * PALETTE_LERP;
+    if (Math.abs(paletteTarget - palettePos) < 0.0005) palettePos = paletteTarget;
+    calmFactor += (calmTarget - calmFactor) * CALM_LERP;
+    const p = palettePos;
     const whole = Math.floor(p);
     const i = whole % PHASE_COUNT;
     const f = p - whole;
@@ -1133,6 +1146,7 @@ function resizeCanvas () {
 }
 
 function updateColors (dt) {
+    easePalette(dt);
     if (!config.COLORFUL) return;
 
     colorUpdateTimer += dt * config.COLOR_UPDATE_SPEED;
@@ -1347,7 +1361,7 @@ function blur (target, temp, iterations) {
 }
 
 function splatPointer (pointer) {
-    const force = pointer.gentle ? config.SPLAT_FORCE * 0.12 : config.SPLAT_FORCE;
+    const force = (pointer.gentle ? config.SPLAT_FORCE * 0.12 : config.SPLAT_FORCE) * calmFactor;
     let dx = pointer.deltaX * force;
     let dy = pointer.deltaY * force;
     splat(pointer.texcoordX, pointer.texcoordY, dx, dy, pointer.color);
@@ -1641,5 +1655,11 @@ function destroy() {
     if (loseExt) loseExt.loseContext();
 }
 
-return { destroy, setPalettePosition };
+function injectEnergy (amount) {
+    // Scroll velocity -> turbulence burst. Scaled by calmFactor so
+    // focused forms stay serene even while the page moves.
+    const n = Math.min(6, Math.max(1, Math.round(amount * calmFactor)));
+    multipleSplats(n);
+}
+return { destroy, setPalettePosition, setCalmMode, injectEnergy };
 }

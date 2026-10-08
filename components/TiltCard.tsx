@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
 
 /**
  * 3D tilt card — follows the cursor with spring physics.
  * maxTilt in degrees; glare adds a cursor-tracking sheen.
+ * All cursor values are lerped (spring) — raw values feel twitchy.
  */
 export default function TiltCard({
   children,
@@ -19,7 +20,6 @@ export default function TiltCard({
   glare?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [glarePos, setGlarePos] = useState({ x: 50, y: 50 });
   const [hovering, setHovering] = useState(false);
 
   const mx = useMotionValue(0.5);
@@ -27,14 +27,16 @@ export default function TiltCard({
   const rx = useSpring(useTransform(my, [0, 1], [maxTilt, -maxTilt]), { stiffness: 180, damping: 22 });
   const ry = useSpring(useTransform(mx, [0, 1], [-maxTilt, maxTilt]), { stiffness: 180, damping: 22 });
 
+  // Lerped glare position — springs, not raw state
+  const gx = useSpring(mx, { stiffness: 260, damping: 28 });
+  const gy = useSpring(my, { stiffness: 260, damping: 28 });
+  const glareBg = useMotionTemplate`radial-gradient(420px circle at ${useTransform(gx, (v) => v * 100)}% ${useTransform(gy, (v) => v * 100)}%, rgba(192,127,255,0.14), transparent 65%)`;
+
   const onMove = (e: React.MouseEvent) => {
     const rect = ref.current?.getBoundingClientRect();
     if (!rect) return;
-    const px = (e.clientX - rect.left) / rect.width;
-    const py = (e.clientY - rect.top) / rect.height;
-    mx.set(px);
-    my.set(py);
-    setGlarePos({ x: px * 100, y: py * 100 });
+    mx.set((e.clientX - rect.left) / rect.width);
+    my.set((e.clientY - rect.top) / rect.height);
   };
 
   return (
@@ -52,13 +54,14 @@ export default function TiltCard({
     >
       {children}
       {glare && (
-        <div
+        <motion.div
           aria-hidden
-          className="pointer-events-none absolute inset-0 rounded-[inherit] transition-opacity duration-300"
+          className="pointer-events-none absolute inset-0 rounded-[inherit]"
           style={{
             opacity: hovering ? 1 : 0,
-            background: `radial-gradient(420px circle at ${glarePos.x}% ${glarePos.y}%, rgba(192,127,255,0.14), transparent 65%)`,
+            background: glareBg,
           }}
+          transition={{ opacity: { duration: 0.3 } }}
         />
       )}
     </motion.div>

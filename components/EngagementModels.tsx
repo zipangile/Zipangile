@@ -70,14 +70,14 @@ export default function EngagementModels() {
             return (
               <motion.div
                 key={m.name}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 28, filter: "blur(12px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className={`relative rounded-2xl p-8 md:p-10 flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 ${
                   m.featured
                     ? "bg-gradient-to-b from-brand-500/[0.12] to-surface border border-brand-500/30 shadow-[0_0_60px_rgba(151,33,255,0.12)]"
-                    : "bg-surface border border-white/[0.08] hover:border-white/[0.16]"
+                    : "glass-panel hover:border-white/[0.16]"
                 }`}
               >
                 {m.featured && (

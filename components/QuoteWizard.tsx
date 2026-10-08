@@ -136,12 +136,12 @@ export default function QuoteWizard() {
         </div>
 
         {/* Card */}
-        <div className="rounded-3xl border border-white/[0.08] bg-surface/90 backdrop-blur p-6 md:p-12 min-h-[480px] relative overflow-hidden">
+        <div className="glass-panel p-6 md:p-12 min-h-[480px] relative overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={step}
-              initial={{ opacity: 0, x: 32 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: 32, filter: "blur(12px)" }}
+              animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
               exit={{ opacity: 0, x: -32 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             >
@@ -176,10 +176,10 @@ export default function QuoteWizard() {
                       <button
                         key={c.id}
                         onClick={() => setCategory(c.id)}
-                        className={`text-left rounded-2xl border p-4 transition-all ${
+                        className={`text-left rounded-2xl border p-4 backdrop-blur-md transition-all ${
                           category === c.id
-                            ? "border-brand-400/70 bg-brand-500/10"
-                            : "border-white/10 bg-white/[0.02] hover:border-white/25"
+                            ? "border-brand-400/70 bg-brand-500/15 shadow-[0_0_32px_rgba(151,33,255,0.25)]"
+                            : "border-white/10 bg-white/[0.03] hover:border-white/25 hover:bg-white/[0.05]"
                         }`}
                       >
                         <div className="flex items-center justify-between mb-1">
@@ -210,10 +210,10 @@ export default function QuoteWizard() {
                         <button
                           key={f.id}
                           onClick={() => toggleFeature(f.id)}
-                          className={`text-left rounded-2xl border p-4 transition-all ${
+                          className={`text-left rounded-2xl border p-4 backdrop-blur-md transition-all ${
                             on
-                              ? "border-brandpink-400/70 bg-brandpink-500/10"
-                              : "border-white/10 bg-white/[0.02] hover:border-white/25"
+                              ? "border-brandpink-400/70 bg-brandpink-500/15 shadow-[0_0_32px_rgba(255,46,154,0.22)]"
+                              : "border-white/10 bg-white/[0.03] hover:border-white/25 hover:bg-white/[0.05]"
                           }`}
                         >
                           <div className="flex items-center justify-between mb-1">
@@ -255,10 +255,10 @@ export default function QuoteWizard() {
                       <button
                         key={t.id}
                         onClick={() => setTimeline(t.id)}
-                        className={`rounded-2xl border p-6 text-center transition-all ${
+                        className={`rounded-2xl border p-6 text-center backdrop-blur-md transition-all ${
                           timeline === t.id
-                            ? "border-brand-400/70 bg-brand-500/10"
-                            : "border-white/10 bg-white/[0.02] hover:border-white/25"
+                            ? "border-brand-400/70 bg-brand-500/15 shadow-[0_0_32px_rgba(151,33,255,0.25)]"
+                            : "border-white/10 bg-white/[0.03] hover:border-white/25 hover:bg-white/[0.05]"
                         }`}
                       >
                         <p className="font-display text-xl text-white mb-1">{t.label}</p>
@@ -328,7 +328,7 @@ export default function QuoteWizard() {
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                     <button
                       onClick={scrollToBooking}
-                      className="btn-gradient-brand inline-flex items-center gap-2 px-8 py-4 text-white font-medium text-[15px] rounded-xl"
+                      className="btn-fluid inline-flex items-center gap-2 px-8 py-4 text-white font-medium text-[15px] rounded-xl"
                     >
                       <CalendarCheck className="w-4 h-4" />
                       Book a consultation to discuss
@@ -360,7 +360,7 @@ export default function QuoteWizard() {
           {step < 3 ? (
             <button
               onClick={next}
-              className="btn-gradient-brand inline-flex items-center gap-2 px-8 py-3.5 text-white font-medium text-sm rounded-xl"
+              className="btn-fluid inline-flex items-center gap-2 px-8 py-3.5 text-white font-medium text-sm rounded-xl"
             >
               {step === 2 ? "See my quote" : "Continue"}
               <ArrowRight className="w-4 h-4" />

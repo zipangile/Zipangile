@@ -163,3 +163,135 @@ body {
 .btn-gradient-brand:active {
   transform: translateY(0) scale(0.99);
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   COHESION PASS — everything condenses out of the fluid, nothing
+   sits on top of it. Glassmorphism + feathered imagery + glow.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Glass panel: translucent, fluid shows through, gradient hairline border */
+.glass-panel {
+  position: relative;
+  background: rgba(16, 7, 28, 0.45);
+  backdrop-filter: blur(28px) saturate(1.5);
+  -webkit-backdrop-filter: blur(28px) saturate(1.5);
+  border-radius: 20px;
+}
+.glass-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg,
+    rgba(151, 33, 255, 0.45),
+    rgba(255, 46, 154, 0.22) 40%,
+    rgba(151, 33, 255, 0.08) 70%,
+    rgba(255, 46, 154, 0.3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+/* Soft inner top-light so panels feel lit by the environment */
+.glass-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), transparent 30%);
+  pointer-events: none;
+}
+
+/* Glass inputs: part of the environment, glow on focus */
+.glass-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  color: #EDEDED;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.glass-input::placeholder { color: #5b5b66; }
+.glass-input:focus {
+  outline: none;
+  border-color: rgba(151, 33, 255, 0.65);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 0 3px rgba(151, 33, 255, 0.18),
+              0 0 32px rgba(255, 46, 154, 0.12);
+}
+
+/* Buttons: light in the fluid, not a flat sticker */
+.btn-fluid {
+  background: linear-gradient(100deg, #9721ff 0%, #ff2e9a 100%);
+  box-shadow: 0 8px 32px rgba(151, 33, 255, 0.35),
+              0 0 64px rgba(255, 46, 154, 0.18),
+              inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.2s ease;
+}
+.btn-fluid:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 10px 44px rgba(151, 33, 255, 0.45),
+              0 0 96px rgba(255, 46, 154, 0.28),
+              inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+.btn-fluid:active { transform: translateY(0) scale(0.99); }
+
+/* Portraits: feathered edges dissolve into the fluid behind them */
+.portrait-blend {
+  -webkit-mask-image: radial-gradient(ellipse 80% 75% at 50% 42%, black 38%, transparent 92%);
+  mask-image: radial-gradient(ellipse 80% 75% at 50% 42%, black 38%, transparent 92%);
+}
+.portrait-halo {
+  position: absolute;
+  inset: -8%;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Reveal choreography: content condenses out of the fluid */
+@keyframes condense-in {
+  from { opacity: 0; transform: translateY(28px); filter: blur(12px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+}
+.reveal-condense {
+  animation: condense-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Cinematic post grade — film grain + vignette over the fluid canvas.
+   Sits between the canvas (-z-10) and content: unifies everything
+   below the UI into one graded world. */
+.post-grade {
+  position: fixed;
+  inset: 0;
+  z-index: -5;
+  pointer-events: none;
+  /* Vignette: gentle edge falloff */
+  background: radial-gradient(ellipse 120% 90% at 50% 45%, transparent 55%, rgba(5, 2, 10, 0.42) 100%);
+}
+.post-grade::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Animated film grain — kills banding, adds organic texture */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+  opacity: 0.055;
+  animation: grain-shift 0.9s steps(4) infinite;
+}
+@keyframes grain-shift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-3%, 2%); }
+  50% { transform: translate(2%, -3%); }
+  75% { transform: translate(-2%, -2%); }
+  100% { transform: translate(0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .post-grade::after { animation: none; }
+}

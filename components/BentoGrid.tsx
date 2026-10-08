@@ -22,7 +22,7 @@ function GlowCard({ children, className = "" }: { children: React.ReactNode; cla
     <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
-      className={`glow-card relative overflow-hidden bg-surface border border-border rounded-xl p-8 transition-all duration-300 ${className}`}
+      className={`glass-panel p-8 transition-all duration-300 ${className}`}
     >
       <div className="glow-card-bg" />
       <div className="relative z-10 h-full flex flex-col justify-between">
@@ -55,7 +55,7 @@ export default function BentoGrid() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 bento-glow-border p-[1px]">
-            <div className="bg-surface rounded-xl p-8 md:p-12 h-full flex flex-col justify-between relative overflow-hidden group">
+            <div className="glass-panel p-8 md:p-12 h-full flex flex-col justify-between relative overflow-hidden group">
               <div className="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-brand-600/10 blur-[80px] pointer-events-none group-hover:bg-brand-600/15 transition-all duration-500" />
 
               <div>

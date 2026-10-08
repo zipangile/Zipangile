@@ -14,8 +14,8 @@ export default function CtaSection() {
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-[1fr_320px] gap-12 items-center">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center lg:text-left"
@@ -60,8 +60,8 @@ export default function CtaSection() {
           </p>
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 40, filter: "blur(12px)" }}
+          whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="hidden lg:block"

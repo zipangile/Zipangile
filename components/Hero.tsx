@@ -62,7 +62,7 @@ export default function Hero() {
           <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="font-mono text-[11px] text-brand-300 border border-brand-500/30 rounded-full px-5 py-2 bg-brand-950/20 backdrop-blur-sm mb-10 tracking-[0.3em] uppercase"
             >
@@ -70,8 +70,8 @@ export default function Hero() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className="mb-8"
             >
@@ -96,8 +96,8 @@ export default function Hero() {
             </motion.div>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20, filter: "blur(12px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.8, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
               className="text-base md:text-xl text-[#A1A1AA] max-w-2xl mb-12 font-light leading-relaxed"
             >
@@ -108,14 +108,14 @@ export default function Hero() {
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20, filter: "blur(12px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.8, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col sm:flex-row items-center gap-4 mb-4 lg:mb-0"
             >
               <MagneticButton
                 onClick={() => handleScroll("quote")}
-                className="btn-gradient-brand group inline-flex items-center gap-2 px-8 py-4 text-white font-medium text-sm rounded-xl"
+                className="btn-fluid group inline-flex items-center gap-2 px-8 py-4 text-white font-medium text-sm rounded-xl"
               >
                 Start your build
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -130,8 +130,8 @@ export default function Hero() {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: 40, filter: "blur(12px)" }}
+            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
             transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 hidden lg:block"
           >
@@ -146,8 +146,8 @@ export default function Hero() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 40, filter: "blur(12px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 1, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="w-full max-w-2xl mx-auto mt-16 lg:mt-20"
           style={{ perspective: 1200 }}
@@ -171,8 +171,8 @@ export default function Hero() {
                 {BUILD_LINES.map((l, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, x: -8, filter: "blur(12px)" }}
+                    animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                     transition={{ delay: 1.3 + i * 0.28, duration: 0.4 }}
                     className={
                       l.tone === "cmd"

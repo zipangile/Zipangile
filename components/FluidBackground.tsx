@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { useScroll } from "framer-motion";
+import { useScroll, useVelocity } from "framer-motion";
 
 // Number of campaign palette phases in lib/fluidSim (FLUID_PHASES) —
 // kept as a literal here so the heavy sim module stays lazy-loaded.
@@ -10,13 +10,21 @@ const PALETTE_PHASE_COUNT = 4;
 type SimHandle = {
   destroy: () => void;
   setPalettePosition?: (p: number) => void;
+  setCalmMode?: (calm: boolean) => void;
+  injectEnergy?: (amount: number) => void;
 };
 
 /**
  * Fixed WebGL fluid-simulation canvas behind all content.
  * - Campaign-colored reactive fluid: as the visitor scrolls, the palette
  *   breathes through the "THE POWER TO ..." sunset phases
- *   (CREATE → GROW → BUILD → BE YOU → CREATE)
+ *   (CREATE → GROW → BUILD → BE YOU → CREATE), lerped — never twitchy
+ * - Scroll VELOCITY injects turbulence: fast scrolling stirs the fluid,
+ *   settled reading lets it calm (Lusion's cardinal rule)
+ * - Calm mode: when the visitor focuses a form field (quote wizard,
+ *   booking), the fluid damps to 25% energy — motion behind the message
+ * - Cinematic post grade: film grain + vignette overlay unifies fluid,
+ *   cards, portraits, and type into one world
  * - Cursor/touch movement pushes the fluid; gentle ambient drift when idle
  * - Pauses when tab hidden; respects prefers-reduced-motion (static gradient)
  * - pointer-events: none so it never blocks interaction
@@ -26,7 +34,8 @@ export default function FluidBackground() {
   const simRef = useRef<SimHandle | null>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [failed, setFailed] = useState(false);
-  const { scrollYProgress } = useScroll();
+  const { scrollY, scrollYProgress } = useScroll();
+  const scrollYVelocity = useVelocity(scrollY);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -70,14 +79,50 @@ export default function FluidBackground() {
     };
   }, [reducedMotion]);
 
-  // Scroll drives the fluid's palette: page progress 0→1 maps across the
-  // campaign phases and wraps back to CREATE at the bottom.
+  // Scroll drives the fluid's palette (lerped inside the sim) and scroll
+  // VELOCITY injects turbulence — the fluid senses the reader's energy.
   useEffect(() => {
-    const unsub = scrollYProgress.on("change", (v) => {
+    let lastV = 0;
+    let energyAcc = 0;
+    const unsubPos = scrollYProgress.on("change", (v) => {
       simRef.current?.setPalettePosition?.(v * PALETTE_PHASE_COUNT);
     });
-    return unsub;
-  }, [scrollYProgress]);
+    const unsubVel = scrollYVelocity.on("change", (v) => {
+      // Lerp the velocity itself so turbulence eases in/out
+      const lerped = lastV + (v - lastV) * 0.12;
+      lastV = lerped;
+      const speed = Math.abs(lerped);
+      // Threshold: ignore micro-jitter, burst on real scrolls
+      if (speed > 800) {
+        energyAcc += (speed - 800) / 4000;
+        if (energyAcc >= 1) {
+          simRef.current?.injectEnergy?.(Math.min(energyAcc, 4));
+          energyAcc = 0;
+        }
+      }
+    });
+    return () => {
+      unsubPos();
+      unsubVel();
+    };
+  }, [scrollYProgress, scrollYVelocity]);
+
+  // Restraint on forms (Stripe's rule): when the visitor focuses any
+  // input/textarea/select, damp the fluid so it never competes with typing.
+  useEffect(() => {
+    if (reducedMotion) return;
+    const onFocusIn = (e: FocusEvent) => {
+      const t = e.target as HTMLElement;
+      if (t.matches("input, textarea, select")) simRef.current?.setCalmMode?.(true);
+    };
+    const onFocusOut = () => simRef.current?.setCalmMode?.(false);
+    document.addEventListener("focusin", onFocusIn);
+    document.addEventListener("focusout", onFocusOut);
+    return () => {
+      document.removeEventListener("focusin", onFocusIn);
+      document.removeEventListener("focusout", onFocusOut);
+    };
+  }, [reducedMotion]);
 
   if (reducedMotion || failed) {
     // Calm static fallback — warm sunset brand gradient, no motion
@@ -94,11 +139,16 @@ export default function FluidBackground() {
   }
 
   return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden
-      className="fixed inset-0 -z-10 pointer-events-none h-full w-full"
-      style={{ background: "#0D0716" }}
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        aria-hidden
+        className="fixed inset-0 -z-10 pointer-events-none h-full w-full"
+        style={{ background: "#0D0716" }}
+      />
+      {/* Cinematic post grade — film grain + vignette. One unified grade
+          makes fluid, cards, portraits, and type feel like a single world. */}
+      <div aria-hidden className="post-grade" />
+    </>
   );
 }

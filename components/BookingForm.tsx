@@ -121,7 +121,7 @@ export default function BookingForm() {
   }
 
   const inputCls =
-    "w-full px-4 py-3.5 bg-white/[0.04] border border-white/10 rounded-xl text-[15px] text-[#EDEDED] placeholder:text-[#52525B] focus:outline-none focus:border-brand-400/70 focus:bg-white/[0.06] transition-all";
+    "glass-input px-4 py-3.5 text-[15px] placeholder:text-[#52525B]";
   const labelCls =
     "block font-mono text-[11px] tracking-[0.2em] uppercase text-[#A1A1AA] mb-2.5";
 
@@ -151,8 +151,8 @@ export default function BookingForm() {
 
         {booking ? (
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="rounded-2xl border border-brand-500/30 bg-gradient-to-br from-brand-600/15 to-brandpink-600/10 p-8 md:p-12 text-center"
           >
@@ -194,11 +194,11 @@ export default function BookingForm() {
         ) : (
           <motion.form
             onSubmit={onSubmit}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-2xl border border-white/[0.08] bg-surface p-8 md:p-12"
+            className="glass-panel p-8 md:p-12"
             noValidate
           >
             {quote && (
@@ -295,7 +295,7 @@ export default function BookingForm() {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-white text-black font-medium text-[15px] rounded-xl hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-60 disabled:hover:scale-100"
+              className="btn-fluid w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 text-white font-medium text-[15px] rounded-xl disabled:opacity-60"
             >
               {submitting ? (
                 <>
