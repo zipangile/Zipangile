@@ -29,6 +29,26 @@ body {
   letter-spacing: 0.01em;
 }
 
+/* Campaign headline voice — heavy condensed all-caps, stacked tight,
+   in the spirit of the "THE POWER TO ..." series. */
+.font-campaign {
+  font-family: var(--font-anton);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 0.94;
+}
+
+/* The white-box accent word from the campaign: bold brand hue on white. */
+.campaign-box {
+  display: inline-block;
+  background: #ffffff;
+  color: var(--box-color, #7c3aed);
+  padding: 0.05em 0.24em 0.0em;
+  /* Optical: Anton's tight line-height needs a touch of bottom air */
+  margin-bottom: 0.06em;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

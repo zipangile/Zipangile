@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function Philosophy() {
   return (
-    <section id="mission" className="py-24 md:py-40 bg-background relative px-6 border-t border-border">
+    <section id="mission" className="py-24 md:py-40 bg-transparent relative px-6 border-t border-border">
       <div className="absolute inset-y-0 left-10 md:left-24 w-[1px] bg-border/40 pointer-events-none" />
       <div className="absolute inset-y-0 right-10 md:right-24 w-[1px] bg-border/40 pointer-events-none" />
 

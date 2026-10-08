@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FileCheck2, LifeBuoy, Handshake, ArrowUpRight } from "lucide-react";
+import CampaignHeadline from "./CampaignHeadline";
 
 const MODELS = [
   {
@@ -43,15 +44,20 @@ export default function EngagementModels() {
   };
 
   return (
-    <section id="models" className="py-28 md:py-40 bg-background relative px-6 border-t border-white/[0.06]">
+    <section id="models" className="py-28 md:py-40 bg-transparent relative px-6 border-t border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 md:mb-20">
           <p className="font-mono text-xs text-brand-300 tracking-[0.3em] uppercase mb-5">
             ENGAGEMENT MODELS
           </p>
-          <h2 className="font-display text-3xl md:text-5xl  text-[#F4F4F5] max-w-3xl leading-[1.05]">
-            Three honest ways to work with us.
-          </h2>
+          <CampaignHeadline
+            align="left"
+            lines={[
+              { text: "THREE HONEST WAYS" },
+              { text: "TO", accent: "WORK WITH US.", accentColor: "#3B82F6" },
+            ]}
+            className="text-3xl md:text-6xl max-w-3xl"
+          />
           <p className="text-base md:text-lg text-[#A1A1AA] font-light leading-relaxed mt-6 max-w-2xl">
             No inflated promises, no hidden meters. Pick the shape that fits
             where you are — every engagement starts with a conversation.

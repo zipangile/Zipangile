@@ -2,6 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import CampaignHeadline from "./CampaignHeadline";
+import PortraitCard from "./PortraitCard";
 import {
   PhoneCall,
   Globe,
@@ -10,6 +12,7 @@ import {
   CreditCard,
   GraduationCap,
   Wrench,
+  Compass,
   ArrowRight,
 } from "lucide-react";
 
@@ -71,6 +74,14 @@ const SERVICES = [
     tag: "CARE // 07",
     body: "Ongoing support for the things we built together — updates, monitoring, small improvements, and someone to call when it matters. No ticket black holes.",
   },
+  {
+    icon: Compass,
+    accent: "violet",
+    title: "Startup Launchpad",
+    price: "K7,500 flat",
+    tag: "LAUNCH // 08",
+    body: "A guided setup package for new startups: cloud credits (AWS, Google, Microsoft for Startups), domains, email infrastructure, payment integration, PACRA incorporation guidance, and warm introductions into the ecosystem — BongoHive, NTBC, ZICTA. We've navigated all of it ourselves, so we shortcut the process for you. Linkages-only intro session: K2,000.",
+  },
 ];
 
 function scrollToBooking(e: React.MouseEvent) {
@@ -80,23 +91,40 @@ function scrollToBooking(e: React.MouseEvent) {
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 md:py-32 bg-background relative px-6">
+    <section id="services" className="py-24 md:py-32 bg-transparent relative px-6">
       <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-brand-500/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto">
-        <div className="mb-16 md:mb-20">
-          <p className="font-mono text-xs text-brand-400 tracking-widest uppercase mb-4">
-            STUDIO SERVICES
-          </p>
-          <h2 className="font-display text-3xl md:text-5xl  text-[#EDEDED] max-w-3xl">
-            Priced in the open. Built to last.
-          </h2>
-          <p className="text-base md:text-lg text-[#A1A1AA] font-light leading-relaxed mt-6 max-w-2xl">
-            Zipangile is a venture studio and engineering firm in Lusaka. Every
-            service below has a real price — no &ldquo;contact us for a
-            quote&rdquo; games. Every build is engineered offline-first where it
-            matters, with practical AI integration when it earns its place.
-          </p>
+        <div className="mb-16 md:mb-20 grid lg:grid-cols-[1fr_290px] gap-10 items-center">
+          <div>
+            <p className="font-mono text-xs text-brand-400 tracking-widest uppercase mb-4">
+              STUDIO SERVICES
+            </p>
+            <CampaignHeadline
+              align="left"
+              lines={[
+                { text: "PRICED IN" },
+                { text: "THE OPEN." },
+                { text: "BUILT TO", accent: "LAST.", accentColor: "#14B8A6" },
+              ]}
+              className="text-3xl md:text-6xl max-w-3xl"
+            />
+            <p className="text-base md:text-lg text-[#A1A1AA] font-light leading-relaxed mt-6 max-w-2xl">
+              Zipangile is a venture studio and engineering firm in Lusaka. Every
+              service below has a real price — no &ldquo;contact us for a
+              quote&rdquo; games. Every build is engineered offline-first where it
+              matters, with practical AI integration when it earns its place.
+            </p>
+          </div>
+          <div className="hidden lg:block">
+            <PortraitCard
+              src="/images/portrait-build.webp"
+              alt="Zipangile engineer holding a laptop against a gold and teal gradient"
+              caption="THE POWER TO BUILD"
+              accent="#F5A623"
+              parallax={24}
+            />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

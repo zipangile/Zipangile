@@ -34,7 +34,7 @@ function GlowCard({ children, className = "" }: { children: React.ReactNode; cla
 
 export default function BentoGrid() {
   return (
-    <section id="flagship" className="py-28 md:py-40 bg-background relative px-6 border-t border-white/[0.06]">
+    <section id="flagship" className="py-28 md:py-40 bg-transparent relative px-6 border-t border-white/[0.06]">
       <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-brand-500/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto">

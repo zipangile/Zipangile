@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { CalendarCheck, CheckCircle2, Loader2, Mail, ArrowRight, ReceiptText } from "lucide-react";
 import { loadQuote, formatZMW, type SavedQuote } from "../lib/quoteCalculator";
+import CampaignHeadline from "./CampaignHeadline";
 
 const SERVICE_OPTIONS = [
   "Tech Consultation — K1,500/hr · K5,000/half-day",
@@ -13,6 +14,7 @@ const SERVICE_OPTIONS = [
   "Payment Integration — K5,000 flat",
   "Team Training — K3,000/person/day",
   "Maintenance Retainer — from K2,500/month",
+  "Startup Launchpad — K7,500 flat",
   "Not sure yet — help me decide",
 ];
 
@@ -124,7 +126,7 @@ export default function BookingForm() {
     "block font-mono text-[11px] tracking-[0.2em] uppercase text-[#A1A1AA] mb-2.5";
 
   return (
-    <section id="booking" className="py-28 md:py-40 bg-background relative px-6 border-t border-white/[0.06] overflow-hidden">
+    <section id="booking" className="py-28 md:py-40 bg-transparent relative px-6 border-t border-white/[0.06] overflow-hidden">
       <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-brand-600/10 blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl mx-auto">
@@ -132,9 +134,14 @@ export default function BookingForm() {
           <p className="font-mono text-xs text-brand-400 tracking-[0.3em] uppercase mb-4">
             BOOKING
           </p>
-          <h2 className="font-display text-3xl md:text-5xl  text-[#F4F4F5]">
-            Book a consultation.
-          </h2>
+          <CampaignHeadline
+            align="center"
+            lines={[
+              { text: "BOOK A" },
+              { text: "", accent: "CONSULTATION.", accentColor: "#3B82F6" },
+            ]}
+            className="text-3xl md:text-6xl"
+          />
           <p className="text-base md:text-lg text-[#A1A1AA] font-light leading-relaxed mt-6 max-w-2xl mx-auto">
             Pick a service and a date that suits you. We confirm the slot
             within two working days, then send a payment link — mobile money or

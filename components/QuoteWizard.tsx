@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import CampaignHeadline from "./CampaignHeadline";
+import PortraitCard from "./PortraitCard";
 import {
   ArrowLeft,
   ArrowRight,
@@ -76,14 +78,22 @@ export default function QuoteWizard() {
       <div className="absolute -top-32 left-1/4 w-[500px] h-[400px] rounded-full bg-brand-600/10 blur-[130px] pointer-events-none" />
       <div className="absolute -bottom-32 right-1/4 w-[500px] h-[400px] rounded-full bg-brandpink-600/10 blur-[130px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-4xl mx-auto">
+      <div className="relative z-10 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-[1fr_300px] gap-10 items-start">
+          <div className="min-w-0">
         <div className="text-center mb-12">
           <p className="font-mono text-xs text-brand-300 tracking-[0.3em] uppercase mb-4">
             IDEA → QUOTE
           </p>
-          <h2 className="font-display text-3xl md:text-5xl text-[#F4F4F5] max-w-3xl mx-auto leading-[1.08]">
-            What would it cost to <span className="text-gradient-brand">build your idea?</span>
-          </h2>
+          <CampaignHeadline
+            align="center"
+            lines={[
+              { text: "WHAT WOULD IT COST" },
+              { text: "TO", accent: "BUILD", accentColor: "#FF2E9A" },
+              { text: "YOUR IDEA?" },
+            ]}
+            className="text-3xl md:text-6xl max-w-4xl mx-auto"
+          />
           <p className="text-base md:text-lg text-[#A1A1AA] font-light leading-relaxed mt-6 max-w-2xl mx-auto">
             Walk through your idea in under a minute and get an instant,
             itemized estimate. No account, no sales call, no waiting.
@@ -366,6 +376,21 @@ export default function QuoteWizard() {
               Start over
             </button>
           )}
+        </div>
+          </div>
+          <aside className="hidden lg:block sticky top-28">
+            <PortraitCard
+              src="/images/portrait-grow.webp"
+              alt="Zipangile campaign portrait — smiling founder against a peach and pink gradient"
+              caption="THE POWER TO GROW"
+              accent="#FF2E9A"
+              parallax={28}
+            />
+            <p className="mt-5 text-sm text-[#A1A1AA] font-light leading-relaxed">
+              Every quote is itemized and fixed before we start — the price you
+              see is the price you pay.
+            </p>
+          </aside>
         </div>
       </div>
     </section>

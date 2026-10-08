@@ -10,20 +10,39 @@ import BentoGrid from "../components/BentoGrid";
 import Philosophy from "../components/Philosophy";
 import CtaSection from "../components/CtaSection";
 import Footer from "../components/Footer";
+import FluidBackground from "../components/FluidBackground";
+import ScrollMorph from "../components/ScrollMorph";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-[#EDEDED] relative selection:bg-brand-500/30 selection:text-white antialiased">
+    <main className="min-h-screen bg-transparent text-[#EDEDED] relative selection:bg-brand-500/30 selection:text-white antialiased">
+      <FluidBackground />
       <Navbar />
       <Hero />
-      <QuoteWizard />
-      <Services />
-      <HowItWorks />
-      <EngagementModels />
-      <BookingForm />
-      <BentoGrid />
-      <Philosophy />
-      <CtaSection />
+      <ScrollMorph intensity={1.1}>
+        <QuoteWizard />
+      </ScrollMorph>
+      <ScrollMorph intensity={0.9}>
+        <Services />
+      </ScrollMorph>
+      <ScrollMorph intensity={1}>
+        <HowItWorks />
+      </ScrollMorph>
+      <ScrollMorph intensity={0.9}>
+        <EngagementModels />
+      </ScrollMorph>
+      <ScrollMorph intensity={1.1}>
+        <BookingForm />
+      </ScrollMorph>
+      <ScrollMorph intensity={0.8}>
+        <BentoGrid />
+      </ScrollMorph>
+      <ScrollMorph intensity={0.8}>
+        <Philosophy />
+      </ScrollMorph>
+      <ScrollMorph intensity={1}>
+        <CtaSection />
+      </ScrollMorph>
       <Footer />
     </main>
   );

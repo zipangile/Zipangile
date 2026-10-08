@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Righteous, Inter } from "next/font/google";
+import { Righteous, Inter, Anton } from "next/font/google";
 import "./globals.css";
 
 const righteous = Righteous({
@@ -12,6 +12,15 @@ const righteous = Righteous({
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+// Heavy condensed display for campaign headlines ("THE POWER TO ..." energy).
+// Righteous stays the wordmark/UI voice; Anton carries the big statements.
+const anton = Anton({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-anton",
   display: "swap",
 });
 
@@ -29,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${righteous.variable} ${inter.variable} bg-[#0D0716] text-[#EDEDED] antialiased`}
+        className={`${righteous.variable} ${inter.variable} ${anton.variable} bg-[#0D0716] text-[#EDEDED] antialiased`}
       >
         {children}
       </body>

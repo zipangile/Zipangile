@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import CampaignHeadline from "./CampaignHeadline";
 
 const STEPS = [
   {
@@ -33,15 +34,20 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section id="process" className="py-24 md:py-32 bg-background relative px-6 border-t border-border">
+    <section id="process" className="py-24 md:py-32 bg-transparent relative px-6 border-t border-border">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 md:mb-20">
           <p className="font-mono text-xs text-brand-400 tracking-widest uppercase mb-4">
             HOW IT WORKS
           </p>
-          <h2 className="font-display text-3xl md:text-5xl  text-[#EDEDED] max-w-3xl">
-            A process built for founders, not committees.
-          </h2>
+          <CampaignHeadline
+            align="left"
+            lines={[
+              { text: "BUILT FOR", accent: "FOUNDERS.", accentColor: "#14B8A6" },
+              { text: "NOT COMMITTEES." },
+            ]}
+            className="text-3xl md:text-6xl max-w-3xl"
+          />
         </div>
 
         <div className="relative">
