@@ -39,7 +39,7 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-[11px] font-mono text-[#63636B] tracking-[0.2em] uppercase">
-            Zipangile &copy; 2026 · Lusaka, Zambia
+            Zipangile Digital Media Services &copy; 2026 · Lusaka, Zambia
           </div>
 
           <div className="flex items-center gap-2">
