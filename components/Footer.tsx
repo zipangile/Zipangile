@@ -12,7 +12,7 @@ export default function Footer() {
             <div className="font-mono text-sm font-bold tracking-[0.3em] text-[#F4F4F5] mb-3">
               ZIPANGILE
             </div>
-            <p className="text-sm text-[#A1A1AA] font-light max-w-sm leading-relaxed">
+            <p className="text-sm text-white font-light max-w-sm leading-relaxed">
               A venture studio and engineering firm in Lusaka, Zambia — building
               digital products for founders and digital public goods for
               everyone.
@@ -22,14 +22,14 @@ export default function Footer() {
           <div className="flex flex-col gap-3">
             <a
               href="mailto:support@zipangile.tech"
-              className="inline-flex items-center gap-2.5 text-sm text-[#C9C9CF] hover:text-white transition-colors"
+              className="inline-flex items-center gap-2.5 text-sm text-white hover:text-white transition-colors"
             >
               <Mail className="w-4 h-4 text-brand-300" />
               support@zipangile.tech
             </a>
             <a
               href="tel:+260972111440"
-              className="inline-flex items-center gap-2.5 text-sm text-[#C9C9CF] hover:text-white transition-colors"
+              className="inline-flex items-center gap-2.5 text-sm text-white hover:text-white transition-colors"
             >
               <Phone className="w-4 h-4 text-brand-300" />
               +260 972 111440
@@ -38,13 +38,13 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-[11px] font-mono text-[#63636B] tracking-[0.2em] uppercase">
+          <div className="text-[11px] font-mono text-white tracking-[0.2em] uppercase">
             Zipangile Digital Media Services &copy; 2026 · Lusaka, Zambia
           </div>
 
           <div className="flex items-center gap-2">
             <div className="h-2 w-2 rounded-full bg-[#10B981] status-blink" />
-            <span className="text-[11px] font-mono text-[#A1A1AA] tracking-[0.2em] uppercase">
+            <span className="text-[11px] font-mono text-white tracking-[0.2em] uppercase">
               Status: Operational
             </span>
           </div>

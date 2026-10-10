@@ -149,11 +149,11 @@ function ServiceCard({
       <h3 className="text-xl md:text-2xl font-bold text-[#EDEDED] mb-3 font-sans tracking-tight">
         {s.title}
       </h3>
-      <p className="text-sm md:text-base text-[#A1A1AA] font-light leading-relaxed flex-1">
+      <p className="text-sm md:text-base text-white font-light leading-relaxed flex-1">
         {s.body}
       </p>
       <div className="flex items-center justify-between mt-8">
-        <div className="font-mono text-[10px] text-[#52525B] uppercase tracking-widest">
+        <div className="font-mono text-[10px] text-white uppercase tracking-widest">
           {s.tag}
         </div>
         {s.cta && (
@@ -192,7 +192,7 @@ export default function Services({ preview = false }: { preview?: boolean }) {
             ]}
             className="text-3xl md:text-6xl max-w-3xl"
           />
-          <p className="text-base md:text-lg text-[#A1A1AA] font-light leading-relaxed mt-6 max-w-2xl">
+          <p className="text-base md:text-lg text-white font-light leading-relaxed mt-6 max-w-2xl">
             Zipangile is a venture studio and engineering firm in Lusaka. Every
             service below has a real price — no &ldquo;contact us for a
             quote&rdquo; games. Every build is engineered offline-first where it
@@ -233,7 +233,7 @@ export default function Services({ preview = false }: { preview?: boolean }) {
                 <h3 className="text-xl md:text-2xl font-bold text-[#F4F4F5] mb-3 font-sans tracking-tight">
                   Not sure what fits?
                 </h3>
-                <p className="text-sm md:text-base text-[#C9C9CF] font-light leading-relaxed">
+                <p className="text-sm md:text-base text-white font-light leading-relaxed">
                   Start with a consultation. We&apos;ll tell you honestly whether
                   you need us at all — and what the cheapest correct option is.
                 </p>

@@ -68,7 +68,7 @@ export default function HowItWorks() {
                 <h3 className="text-lg font-bold text-[#EDEDED] mb-2 font-sans tracking-tight">
                   {s.title}
                 </h3>
-                <p className="text-sm text-[#A1A1AA] font-light leading-relaxed">
+                <p className="text-sm text-white font-light leading-relaxed">
                   {s.body}
                 </p>
               </motion.div>

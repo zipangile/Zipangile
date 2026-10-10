@@ -121,7 +121,7 @@ export default function BookingForm() {
   }
 
   const inputCls =
-    "glass-input px-4 py-3.5 text-[15px] placeholder:text-[#52525B]";
+    "glass-input px-4 py-3.5 text-[15px] placeholder:text-white";
   const labelCls = "glass-label";
 
   return (
@@ -141,7 +141,7 @@ export default function BookingForm() {
             ]}
             className="text-3xl md:text-6xl"
           />
-          <p className="text-base md:text-lg text-[#A1A1AA] font-light leading-relaxed mt-6 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-white font-light leading-relaxed mt-6 max-w-2xl mx-auto">
             Pick a service and a date that suits you. We confirm the slot
             within two working days, then send a payment link — mobile money or
             card. No payment is taken until your slot is confirmed.
@@ -159,7 +159,7 @@ export default function BookingForm() {
             <h3 className="text-2xl md:text-3xl font-bold text-[#F4F4F5] tracking-tight mb-3">
               Booking received.
             </h3>
-            <p className="text-[#A1A1AA] font-light leading-relaxed max-w-xl mx-auto mb-8">
+            <p className="text-white font-light leading-relaxed max-w-xl mx-auto mb-8">
               Your reference is{" "}
               <span className="font-mono text-brand-300 tracking-wider">{booking.reference}</span>.
               We&apos;ll confirm <strong className="text-[#EDEDED] font-medium">{booking.date}</strong>{" "}
@@ -184,7 +184,7 @@ export default function BookingForm() {
                   setBooking(null);
                   setForm({ name: "", contact: "", service: SERVICE_OPTIONS[0], date: "", notes: "" });
                 }}
-                className="text-[13px] font-mono tracking-wider uppercase text-[#A1A1AA] hover:text-white transition-colors"
+                className="text-[13px] font-mono tracking-wider uppercase text-white hover:text-white transition-colors"
               >
                 Make another booking
               </button>
@@ -205,7 +205,7 @@ export default function BookingForm() {
                 <ReceiptText className="w-5 h-5 text-brand-300 shrink-0" />
                 <div className="text-sm">
                   <span className="font-mono text-brand-300 tracking-wider">{quote.reference}</span>
-                  <span className="text-[#A1A1AA] font-light">
+                  <span className="text-white font-light">
                     {" "}· {quote.breakdown.baseLabel} · {formatZMW(quote.breakdown.low)}–
                     {formatZMW(quote.breakdown.high)} — attached to this booking.
                   </span>
@@ -279,7 +279,7 @@ export default function BookingForm() {
 
             <div className="mb-8">
               <label htmlFor="bk-notes" className={labelCls}>
-                What are you working on? <span className="text-[#52525B] normal-case tracking-normal">(optional)</span>
+                What are you working on? <span className="text-white normal-case tracking-normal">(optional)</span>
               </label>
               <textarea
                 id="bk-notes"
@@ -310,7 +310,7 @@ export default function BookingForm() {
               )}
             </button>
 
-            <p className="font-mono text-[11px] text-[#63636B] tracking-[0.15em] uppercase text-center mt-6">
+            <p className="font-mono text-[11px] text-white tracking-[0.15em] uppercase text-center mt-6">
               No payment now — we confirm first, then send a payment link
             </p>
           </motion.form>

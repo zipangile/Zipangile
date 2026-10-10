@@ -30,7 +30,7 @@ export default function CtaSection() {
             ]}
             className="text-4xl md:text-7xl mb-6"
           />
-          <p className="text-base md:text-xl text-[#A1A1AA] font-light leading-relaxed max-w-2xl mx-auto mb-12">
+          <p className="text-base md:text-xl text-white font-light leading-relaxed max-w-2xl mx-auto mb-12">
             Tell us about your idea or the problem you&apos;re solving. We reply
             to every serious enquiry — usually within two working days.
           </p>
@@ -53,7 +53,7 @@ export default function CtaSection() {
             </a>
           </div>
 
-          <p className="font-mono text-[11px] text-[#63636B] tracking-[0.2em] uppercase mt-10">
+          <p className="font-mono text-[11px] text-white tracking-[0.2em] uppercase mt-10">
             Lusaka, Zambia // Building for the next billion users
           </p>
         </motion.div>

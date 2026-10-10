@@ -92,7 +92,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
-              className="text-base md:text-xl text-[#A1A1AA] max-w-2xl mb-12 font-light leading-relaxed"
+              className="text-base md:text-xl text-white max-w-2xl mb-12 font-light leading-relaxed"
             >
               Zipangile is a venture studio and engineering firm in Lusaka. We
               design and build MVPs, platforms, and offline-first systems for
@@ -139,8 +139,8 @@ export default function Hero() {
                   <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]/80" />
                 </div>
                 <div className="flex items-center gap-2 ml-3">
-                  <Terminal className="w-3.5 h-3.5 text-[#63636B]" />
-                  <span className="font-mono text-[11px] text-[#63636B] tracking-wider">
+                  <Terminal className="w-3.5 h-3.5 text-white" />
+                  <span className="font-mono text-[11px] text-white tracking-wider">
                     zipangile.studio — build pipeline
                   </span>
                 </div>
@@ -156,7 +156,7 @@ export default function Hero() {
                       l.tone === "cmd"
                         ? "text-[#EDEDED]"
                         : l.tone === "ok"
-                          ? "text-[#A1A1AA]"
+                          ? "text-white"
                           : "text-emerald-400"
                     }
                   >

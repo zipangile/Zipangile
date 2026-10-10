@@ -38,7 +38,7 @@ export default function Navbar() {
                 key={l.href}
                 href={l.href}
                 className={`text-[11px] font-mono tracking-[0.2em] uppercase transition-colors ${
-                  active ? "text-white" : "text-[#A1A1AA] hover:text-white"
+                  active ? "text-white" : "text-white hover:text-white"
                 }`}
               >
                 {l.label}

@@ -245,7 +245,7 @@ body {
     0 1px 0 rgba(255, 255, 255, 0.05);
   transition: border-color 0.25s ease, box-shadow 0.3s ease, background 0.25s ease;
 }
-.glass-input::placeholder { color: #5b5b66; }
+.glass-input::placeholder { color: rgba(255, 255, 255, 0.75); }
 .glass-input:hover {
   border-color: rgba(255, 255, 255, 0.16);
 }

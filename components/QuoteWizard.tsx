@@ -92,7 +92,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
             ]}
             className="text-3xl md:text-6xl max-w-4xl mx-auto"
           />
-          <p className="text-base md:text-lg text-[#A1A1AA] font-light leading-relaxed mt-6 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-white font-light leading-relaxed mt-6 max-w-2xl mx-auto">
             Walk through your idea in under a minute and get an instant,
             itemized estimate. No account, no sales call, no waiting.
           </p>
@@ -113,7 +113,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                       ? "border-brand-400/60 bg-brand-500/15 text-white"
                       : done
                         ? "border-brand-500/30 bg-brand-500/5 text-brand-300 cursor-pointer hover:border-brand-400/50"
-                        : "border-white/10 text-[#52525B]"
+                        : "border-white/10 text-white"
                   }`}
                 >
                   {done ? (
@@ -148,7 +148,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                   <h3 className="font-display text-2xl md:text-3xl text-white mb-2">
                     Tell us the idea.
                   </h3>
-                  <p className="text-[#A1A1AA] font-light mb-8">
+                  <p className="text-white font-light mb-8">
                     A few sentences is plenty — what it does, who it&apos;s for.
                   </p>
                   <textarea
@@ -159,14 +159,14 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                     }}
                     rows={5}
                     placeholder="e.g. A mobile app where farmers in Eastern Province list their produce and buyers place orders for delivery…"
-                    className="w-full px-5 py-4 bg-white/[0.04] border border-white/10 rounded-2xl text-[15px] text-[#EDEDED] placeholder:text-[#52525B] focus:outline-none focus:border-brand-400/70 focus:bg-white/[0.06] transition-all resize-y mb-2"
+                    className="w-full px-5 py-4 bg-white/[0.04] border border-white/10 rounded-2xl text-[15px] text-[#EDEDED] placeholder:text-white focus:outline-none focus:border-brand-400/70 focus:bg-white/[0.06] transition-all resize-y mb-2"
                   />
                   {ideaError && (
                     <p className="text-brandpink-400 text-xs mb-4">
                       Give us at least a sentence or two so the estimate means something.
                     </p>
                   )}
-                  <p className="font-mono text-[11px] tracking-[0.2em] uppercase text-[#A1A1AA] mt-6 mb-3">
+                  <p className="font-mono text-[11px] tracking-[0.2em] uppercase text-white mt-6 mb-3">
                     What best describes it?
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -186,7 +186,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                             {formatZMW(c.base)}+
                           </span>
                         </div>
-                        <p className="text-xs text-[#A1A1AA] font-light">{c.blurb}</p>
+                        <p className="text-xs text-white font-light">{c.blurb}</p>
                       </button>
                     ))}
                   </div>
@@ -198,7 +198,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                   <h3 className="font-display text-2xl md:text-3xl text-white mb-2">
                     Pick your features.
                   </h3>
-                  <p className="text-[#A1A1AA] font-light mb-8">
+                  <p className="text-white font-light mb-8">
                     Tap everything your idea needs. Prices update live.
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -229,7 +229,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                               +{formatZMW(f.price)}
                             </span>
                           </div>
-                          <p className="text-xs text-[#A1A1AA] font-light pl-6">{f.hint}</p>
+                          <p className="text-xs text-white font-light pl-6">{f.hint}</p>
                         </button>
                       );
                     })}
@@ -245,7 +245,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                   <h3 className="font-display text-2xl md:text-3xl text-white mb-2">
                     How fast do you need it?
                   </h3>
-                  <p className="text-[#A1A1AA] font-light mb-8">
+                  <p className="text-white font-light mb-8">
                     Speed costs. Patience saves.
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -260,7 +260,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                         }`}
                       >
                         <p className="font-display text-xl text-white mb-1">{t.label}</p>
-                        <p className="text-sm text-[#A1A1AA] font-light mb-3">{t.detail}</p>
+                        <p className="text-sm text-white font-light mb-3">{t.detail}</p>
                         <p
                           className={`font-mono text-sm ${
                             t.multiplier > 1
@@ -285,41 +285,41 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                     Your scoped quote · {quote?.reference ?? "—"}
                   </div>
 
-                  <p className="font-mono text-xs tracking-[0.2em] uppercase text-[#A1A1AA] mb-3">
+                  <p className="font-mono text-xs tracking-[0.2em] uppercase text-white mb-3">
                     Indicative estimate
                   </p>
                   <p className="font-display text-6xl md:text-7xl text-white mb-2">
                     {formatZMW(breakdown.low)} – {formatZMW(breakdown.high)}
                   </p>
-                  <p className="text-sm text-[#A1A1AA] font-light mb-10">
+                  <p className="text-sm text-white font-light mb-10">
                     Most similar builds land near{" "}
                     <span className="text-white font-medium">{formatZMW(breakdown.total)}</span>
                   </p>
 
                   <div className="max-w-xl mx-auto text-left rounded-2xl border border-white/[0.08] bg-black/30 p-6 mb-10">
                     <div className="flex justify-between text-sm py-2 border-b border-white/[0.06]">
-                      <span className="text-[#A1A1AA]">{breakdown.baseLabel} — base</span>
+                      <span className="text-white">{breakdown.baseLabel} — base</span>
                       <span className="font-mono text-white">{formatZMW(breakdown.base)}</span>
                     </div>
                     {breakdown.features.map((f) => (
                       <div key={f.label} className="flex justify-between text-sm py-2 border-b border-white/[0.06]">
-                        <span className="text-[#A1A1AA]">{f.label}</span>
+                        <span className="text-white">{f.label}</span>
                         <span className="font-mono text-white">+{formatZMW(f.price)}</span>
                       </div>
                     ))}
                     <div className="flex justify-between text-sm py-2 border-b border-white/[0.06]">
-                      <span className="text-[#A1A1AA]">{breakdown.timelineLabel} timeline</span>
+                      <span className="text-white">{breakdown.timelineLabel} timeline</span>
                       <span className="font-mono text-brand-300">×{breakdown.multiplier.toFixed(1)}</span>
                     </div>
                     <div className="flex justify-between text-sm py-2">
-                      <span className="text-[#A1A1AA]">Range (±15%)</span>
+                      <span className="text-white">Range (±15%)</span>
                       <span className="font-mono text-brandpink-300">
                         {formatZMW(breakdown.low)} – {formatZMW(breakdown.high)}
                       </span>
                     </div>
                   </div>
 
-                  <p className="font-mono text-[11px] text-[#63636B] tracking-[0.15em] uppercase mb-8">
+                  <p className="font-mono text-[11px] text-white tracking-[0.15em] uppercase mb-8">
                     Indicative estimate — final scope confirmed in consultation
                   </p>
 
@@ -350,7 +350,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
           <button
             onClick={back}
             disabled={step === 0}
-            className="inline-flex items-center gap-2 text-sm text-[#A1A1AA] hover:text-white transition-colors disabled:opacity-30 disabled:hover:text-[#A1A1AA]"
+            className="inline-flex items-center gap-2 text-sm text-white hover:text-white transition-colors disabled:opacity-30 disabled:hover:text-white"
           >
             <ArrowLeft className="w-4 h-4" />
             Back
@@ -369,7 +369,7 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
                 setStep(0);
                 setQuote(null);
               }}
-              className="text-sm font-mono tracking-wider uppercase text-[#A1A1AA] hover:text-white transition-colors"
+              className="text-sm font-mono tracking-wider uppercase text-white hover:text-white transition-colors"
             >
               Start over
             </button>

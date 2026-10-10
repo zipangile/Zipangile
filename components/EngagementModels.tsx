@@ -58,7 +58,7 @@ export default function EngagementModels() {
             ]}
             className="text-3xl md:text-6xl max-w-3xl"
           />
-          <p className="text-base md:text-lg text-[#A1A1AA] font-light leading-relaxed mt-6 max-w-2xl">
+          <p className="text-base md:text-lg text-white font-light leading-relaxed mt-6 max-w-2xl">
             No inflated promises, no hidden meters. Pick the shape that fits
             where you are — every engagement starts with a conversation.
           </p>
@@ -88,19 +88,19 @@ export default function EngagementModels() {
                 <div className="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/25 flex items-center justify-center mb-8">
                   <Icon className="w-6 h-6 text-brand-300" />
                 </div>
-                <p className="font-mono text-[10px] text-[#63636B] uppercase tracking-[0.25em] mb-3">
+                <p className="font-mono text-[10px] text-white uppercase tracking-[0.25em] mb-3">
                   {m.tag}
                 </p>
                 <h3 className="text-xl md:text-2xl font-bold text-[#F4F4F5] mb-3 font-sans tracking-tight">
                   {m.name}
                 </h3>
                 <p className="text-sm text-brand-200/80 font-medium mb-4">{m.headline}</p>
-                <p className="text-sm text-[#A1A1AA] font-light leading-relaxed mb-8">
+                <p className="text-sm text-white font-light leading-relaxed mb-8">
                   {m.body}
                 </p>
                 <ul className="space-y-3 mb-10">
                   {m.points.map((pt) => (
-                    <li key={pt} className="flex items-start gap-3 text-sm text-[#C9C9CF] font-light">
+                    <li key={pt} className="flex items-start gap-3 text-sm text-white font-light">
                       <span className="mt-[7px] h-1 w-1 rounded-full bg-brand-400 shrink-0" />
                       {pt}
                     </li>

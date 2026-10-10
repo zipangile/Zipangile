@@ -25,7 +25,7 @@ export default function Philosophy() {
             <p className="text-3xl md:text-6xl font-bold tracking-[-0.03em] text-[#EDEDED] leading-[1.1] font-sans">
               Technology shouldn&apos;t be a walled garden.
             </p>
-            <p className="text-xl md:text-3xl text-[#A1A1AA] font-light leading-relaxed max-w-4xl">
+            <p className="text-xl md:text-3xl text-white font-light leading-relaxed max-w-4xl">
               We build digital public goods because fundamental infrastructure belongs to everyone. Sustainable, scalable, and radically open.
             </p>
           </motion.div>

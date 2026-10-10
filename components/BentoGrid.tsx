@@ -45,7 +45,7 @@ export default function BentoGrid() {
           <h2 className="font-display text-3xl md:text-5xl  text-[#F4F4F5] max-w-3xl leading-[1.05]">
             The product that proves how we build.
           </h2>
-          <p className="text-base md:text-lg text-[#A1A1AA] font-light leading-relaxed mt-6 max-w-2xl">
+          <p className="text-base md:text-lg text-white font-light leading-relaxed mt-6 max-w-2xl">
             UbuntuPlay is our flagship — an offline-first educational gaming
             platform for Zambian classrooms, built the same way we build for
             clients: six curriculum-aligned games, an on-device AI tutor, and
@@ -67,7 +67,7 @@ export default function BentoGrid() {
                   Ubuntu Play: The Offline-First Classroom Server.
                 </h3>
 
-                <p className="text-sm md:text-base text-[#A1A1AA] max-w-xl font-light leading-relaxed mb-8">
+                <p className="text-sm md:text-base text-white max-w-xl font-light leading-relaxed mb-8">
                   Engineered for low-resource environments. We bypass traditional connectivity limits to deliver robust, high-speed educational infrastructure entirely locally.
                 </p>
               </div>
@@ -94,11 +94,11 @@ export default function BentoGrid() {
               <h4 className="text-lg font-bold text-[#EDEDED] mb-2 font-sans tracking-tight">
                 Zero-Dependency Operations
               </h4>
-              <p className="text-xs md:text-sm text-[#A1A1AA] font-light leading-relaxed">
+              <p className="text-xs md:text-sm text-white font-light leading-relaxed">
                 Self-contained, containerized builds that mount easily on low-power, generic hardware with absolutely zero complex package management needed.
               </p>
             </div>
-            <div className="font-mono text-[10px] text-[#52525B] uppercase tracking-widest mt-6">
+            <div className="font-mono text-[10px] text-white uppercase tracking-widest mt-6">
               SYSTEM // STANDALONE
             </div>
           </GlowCard>
@@ -111,11 +111,11 @@ export default function BentoGrid() {
               <h4 className="text-lg font-bold text-[#EDEDED] mb-2 font-sans tracking-tight">
                 Local AI & Automation
               </h4>
-              <p className="text-xs md:text-sm text-[#A1A1AA] font-light leading-relaxed">
+              <p className="text-xs md:text-sm text-white font-light leading-relaxed">
                 Embedding light, offline-capable language models to automate curriculum updates, translations, and student self-assessment right inside the local network.
               </p>
             </div>
-            <div className="font-mono text-[10px] text-[#52525B] uppercase tracking-widest mt-6">
+            <div className="font-mono text-[10px] text-white uppercase tracking-widest mt-6">
               COMPUTE // OFFLINE
             </div>
           </GlowCard>
@@ -129,19 +129,19 @@ export default function BentoGrid() {
                 <h4 className="text-lg font-bold text-[#EDEDED] mb-2 font-sans tracking-tight">
                   Open Source at the Core
                 </h4>
-                <p className="text-xs md:text-sm text-[#A1A1AA] font-light leading-relaxed">
+                <p className="text-xs md:text-sm text-white font-light leading-relaxed">
                   Every component is fully transparent, auditable, and extensible. We construct community-vetted infrastructure that protects digital privacy and fosters local technology sovereignty.
                 </p>
               </div>
               <div className="border-t md:border-t-0 md:border-l border-border/80 pt-6 md:pt-0 md:pl-10 flex flex-col justify-center h-full">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="h-2 w-2 rounded-full bg-green-500 status-blink" />
-                  <span className="font-mono text-[10px] tracking-wider text-[#A1A1AA] uppercase">PUBLIC PROTOCOL</span>
+                  <span className="font-mono text-[10px] tracking-wider text-white uppercase">PUBLIC PROTOCOL</span>
                 </div>
                 <div className="text-2xl font-mono text-[#EDEDED] tracking-tighter">
                   0.0.0.0 // LOCALHOST
                 </div>
-                <div className="text-xs text-[#52525B] mt-1 font-mono uppercase">
+                <div className="text-xs text-white mt-1 font-mono uppercase">
                   RELIABILITY // 99.9% LOCAL UPTIME
                 </div>
               </div>
