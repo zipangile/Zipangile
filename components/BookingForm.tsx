@@ -7,7 +7,7 @@ import { loadQuote, formatZMW, type SavedQuote } from "../lib/quoteCalculator";
 import CampaignHeadline from "./CampaignHeadline";
 
 const SERVICE_OPTIONS = [
-  "Tech Consultation — K1,500/hr · K5,000/half-day",
+  "Tech Consultation — K1,500/hr",
   "Website Development — from K8,000",
   "MVP Development — from K25,000",
   "Custom Platform — quoted per scope",
@@ -150,8 +150,8 @@ export default function BookingForm() {
 
         {booking ? (
           <motion.div
-            initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="rounded-2xl border border-brand-500/30 bg-gradient-to-br from-brand-600/15 to-brandpink-600/10 p-8 md:p-12 text-center"
           >
@@ -193,8 +193,8 @@ export default function BookingForm() {
         ) : (
           <motion.form
             onSubmit={onSubmit}
-            initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="glass-panel p-8 md:p-12"

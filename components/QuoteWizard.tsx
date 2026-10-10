@@ -138,8 +138,8 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
           <AnimatePresence mode="wait">
             <motion.div
               key={step}
-              initial={{ opacity: 0, x: 32, filter: "blur(12px)" }}
-              animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              initial={{ opacity: 0, x: 32 }}
+              animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -32 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             >

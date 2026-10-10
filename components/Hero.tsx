@@ -55,7 +55,7 @@ export default function Hero() {
           <div className="flex flex-col items-center text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="font-mono text-[11px] text-brand-300 border border-brand-500/30 rounded-full px-5 py-2 bg-brand-950/20 backdrop-blur-sm mb-10 tracking-[0.3em] uppercase"
             >
@@ -63,8 +63,8 @@ export default function Hero() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className="mb-8"
             >
@@ -89,8 +89,8 @@ export default function Hero() {
             </motion.div>
 
             <motion.p
-              initial={{ opacity: 0, y: 20, filter: "blur(12px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
               className="text-base md:text-xl text-[#A1A1AA] max-w-2xl mb-12 font-light leading-relaxed"
             >
@@ -101,8 +101,8 @@ export default function Hero() {
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20, filter: "blur(12px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col sm:flex-row items-center gap-4 mb-4 lg:mb-0"
             >
@@ -124,14 +124,14 @@ export default function Hero() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 40, filter: "blur(12px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="w-full max-w-2xl mx-auto mt-16 lg:mt-20"
           style={{ perspective: 1200 }}
         >
           <TiltCard maxTilt={6} className="rounded-2xl">
-            <div className="rounded-2xl border border-white/10 bg-[#0A0A0C]/90 backdrop-blur-md shadow-[0_20px_80px_rgba(0,0,0,0.6)] overflow-hidden text-left">
+            <div className="rounded-2xl border border-white/10 bg-[#0A0A0C]/60 backdrop-blur-md shadow-[0_20px_80px_rgba(0,0,0,0.6)] overflow-hidden text-left">
               <div className="flex items-center gap-2 px-5 py-3.5 border-b border-white/[0.07]">
                 <div className="flex gap-1.5">
                   <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]/80" />
@@ -149,8 +149,8 @@ export default function Hero() {
                 {BUILD_LINES.map((l, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, x: -8, filter: "blur(12px)" }}
-                    animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 1.3 + i * 0.28, duration: 0.4 }}
                     className={
                       l.tone === "cmd"

@@ -149,7 +149,7 @@ export default function FluidBackground() {
         ref={canvasRef}
         aria-hidden
         className="fixed inset-0 -z-10 pointer-events-none h-full w-full"
-        style={{ background: "#0D0716", y: smoothParallax, scale: 1.08 }}
+        style={{ background: "#0D0716", y: smoothParallax, scale: 1.35 }}
       />
       {/* Cinematic post grade — film grain + vignette. One unified grade
           makes fluid, cards, portraits, and type feel like a single world. */}

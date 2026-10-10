@@ -329,6 +329,17 @@ body {
   /* Vignette: gentle edge falloff */
   background: radial-gradient(ellipse 120% 90% at 50% 45%, transparent 55%, rgba(5, 2, 10, 0.42) 100%);
 }
+/* Mobile scrim: the fluid sim blows out to near-white on small screens
+   (short viewport, bright palette phases), destroying text contrast.
+   A uniform dark veil keeps headlines, cards, and forms readable
+   without touching the desktop grade. */
+@media (max-width: 768px) {
+  .post-grade {
+    background:
+      linear-gradient(rgba(13, 7, 22, 0.62), rgba(13, 7, 22, 0.62)),
+      radial-gradient(ellipse 120% 90% at 50% 45%, transparent 45%, rgba(5, 2, 10, 0.5) 100%);
+  }
+}
 .post-grade::after {
   content: "";
   position: absolute;

@@ -12,8 +12,8 @@ export default function CtaSection() {
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <motion.div
-          initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center"
