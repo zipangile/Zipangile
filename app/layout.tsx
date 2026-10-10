@@ -29,6 +29,10 @@ export const metadata: Metadata = {
   title: "Zipangile | Venture Studio & Engineering — Lusaka",
   description:
     "Zipangile is a venture studio and engineering firm in Lusaka, Zambia. Scope your idea into an instant quote, book a consultation, and let us build your MVP, platform, or offline-first system.",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
