@@ -4,13 +4,13 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 /**
- * Hero cinematic scroll-out.
+ * Hero scroll-out.
  *
- * As the visitor leaves the hero, the whole hero block performs a camera
- * pull-back: content scales down toward 0.88, blurs to 14px, drifts up and
- * fades — while the fluid behind surges (handled by FluidBackground's
- * velocity-reactive turbulence). The effect is a dramatic dolly-out, not
- * a flat scroll-past.
+ * As the visitor leaves the hero, the whole hero block gently recedes:
+ * scales down toward 0.94, drifts up and fades — while the fluid behind
+ * surges (handled by FluidBackground's velocity-reactive turbulence).
+ * Deliberately no blur: the focus-pull effect read as broken on real
+ * devices, and the hero must stay crisp until it's off-screen.
  */
 export default function HeroScrollOut({
   children,
@@ -29,15 +29,13 @@ export default function HeroScrollOut({
     mass: 0.6,
   });
 
-  // Pull-back: scale 1 → 0.88, blur 0 → 14px, rise -120px, fade → 0
-  const scale = useTransform(smooth, [0, 1], [1, 0.88]);
-  const y = useTransform(smooth, [0, 1], [0, -120]);
-  const blurV = useTransform(smooth, [0, 0.7, 1], [0, 6, 14]);
+  // Gentle recede: scale 1 → 0.94, rise -80px, fade → 0. No blur.
+  const scale = useTransform(smooth, [0, 1], [1, 0.94]);
+  const y = useTransform(smooth, [0, 1], [0, -80]);
   const opacity = useTransform(smooth, [0, 0.75, 1], [1, 0.6, 0]);
-  const filter = useTransform(blurV, (b) => `blur(${b.toFixed(2)}px)`);
 
   return (
-    <motion.div ref={ref} style={{ scale, y, opacity, filter }}>
+    <motion.div ref={ref} style={{ scale, y, opacity }}>
       {children}
     </motion.div>
   );
