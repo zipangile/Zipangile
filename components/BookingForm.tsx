@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { CalendarCheck, CheckCircle2, Loader2, Mail, ArrowRight, ReceiptText } from "lucide-react";
+import { CalendarCheck, CheckCircle2, Loader2, ArrowRight, ReceiptText } from "lucide-react";
 import { loadQuote, formatZMW, type SavedQuote } from "../lib/quoteCalculator";
 import CampaignHeadline from "./CampaignHeadline";
 
@@ -17,6 +17,8 @@ const SERVICE_OPTIONS = [
   "Startup Launchpad — K7,500 flat",
   "Not sure yet — help me decide",
 ];
+
+const HUB_BOOKING_URL = "https://ubuntuplay.zipangile.tech/api/v1/zipangile-booking";
 
 type FormState = {
   name: string;
@@ -45,6 +47,7 @@ export default function BookingForm() {
   });
   const [errors, setErrors] = useState<Partial<FormState>>({});
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [booking, setBooking] = useState<Booking | null>(null);
   const [quote, setQuote] = useState<SavedQuote | null>(null);
 
@@ -85,21 +88,36 @@ export default function BookingForm() {
     return Object.keys(er).length === 0;
   }
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!validate()) return;
     setSubmitting(true);
-    // Simulate a short round-trip; the booking is stored locally and the
-    // confirmation email draft is prepared for the visitor to send.
-    setTimeout(() => {
-      const notesWithQuote =
-        quote && !form.notes.includes(quote.reference)
-          ? `[Quote ${quote.reference}: ${quote.breakdown.baseLabel}, ${formatZMW(quote.breakdown.low)}–${formatZMW(quote.breakdown.high)}] ${form.notes}`.trim()
-          : form.notes;
+    setSubmitError(null);
+    const notesWithQuote =
+      quote && !form.notes.includes(quote.reference)
+        ? `[Quote ${quote.reference}: ${quote.breakdown.baseLabel}, ${formatZMW(quote.breakdown.low)}–${formatZMW(quote.breakdown.high)}] ${form.notes}`.trim()
+        : form.notes;
+    const reference = makeReference();
+    try {
+      // The Hub wakes from sleep on first traffic — allow a generous timeout.
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 60000);
+      const resp = await fetch(HUB_BOOKING_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, notes: notesWithQuote, reference }),
+        signal: ctrl.signal,
+      }).finally(() => clearTimeout(timer));
+      const data = await resp.json().catch(() => ({}));
+      if (!resp.ok || !data.ok) {
+        throw new Error(
+          data.error || "The booking service didn't respond. Please try again."
+        );
+      }
       const b: Booking = {
         ...form,
         notes: notesWithQuote,
-        reference: makeReference(),
+        reference: data.reference || reference,
         createdAt: new Date().toISOString(),
       };
       try {
@@ -108,17 +126,21 @@ export default function BookingForm() {
         /* ignore */
       }
       setBooking(b);
+    } catch (err) {
+      const msg =
+        err instanceof Error && err.name === "AbortError"
+          ? "The request timed out — the server may be waking up. Please try again in a few seconds."
+          : err instanceof Error
+            ? err.message
+            : "Something went wrong. Please try again.";
+      setSubmitError(msg);
+    } finally {
       setSubmitting(false);
-    }, 900);
+    }
   }
 
-  function mailtoHref(b: Booking) {
-    const subject = encodeURIComponent(`Booking ${b.reference} — ${b.service.split(" — ")[0]}`);
-    const body = encodeURIComponent(
-      `Hi Zipangile,\n\nI'd like to confirm this booking:\n\nReference: ${b.reference}\nName: ${b.name}\nContact: ${b.contact}\nService: ${b.service}\nPreferred date: ${b.date}\nNotes: ${b.notes || "—"}\n\nThanks.`
-    );
-    return `mailto:support@zipangile.tech?subject=${subject}&body=${body}`;
-  }
+  // Confirmation emails are sent by the booking service now that the form
+  // posts to the Hub — no manual "confirm via email" step needed.
 
   const inputCls =
     "glass-input px-4 py-3.5 text-[15px] placeholder:text-white";
@@ -167,13 +189,11 @@ export default function BookingForm() {
               within two working days at <strong className="text-[#EDEDED] font-medium">{booking.contact}</strong>.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href={mailtoHref(booking)}
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-white text-black font-medium text-sm rounded-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
-              >
-                <Mail className="w-4 h-4" />
-                Confirm via email
-              </a>
+              <p className="font-mono text-[11px] text-white tracking-[0.15em] uppercase">
+                {/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(booking.contact)
+                  ? "A confirmation is on its way — check your inbox"
+                  : `We'll reach out to you at ${booking.contact}`}
+              </p>
               <button
                 onClick={() => {
                   try {
@@ -309,6 +329,12 @@ export default function BookingForm() {
                 </>
               )}
             </button>
+
+            {submitError && (
+              <p className="text-red-400 text-sm mt-4 text-center" role="alert">
+                {submitError}
+              </p>
+            )}
 
             <p className="font-mono text-[11px] text-white tracking-[0.15em] uppercase text-center mt-6">
               No payment now — we confirm first, then send a payment link

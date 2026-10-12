@@ -21,18 +21,18 @@ export default function Footer() {
 
           <div className="flex flex-col gap-3">
             <a
-              href="mailto:support@zipangile.tech"
+              href="mailto:consult@zipangile.tech"
               className="inline-flex items-center gap-2.5 text-sm text-white hover:text-white transition-colors"
             >
               <Mail className="w-4 h-4 text-brand-300" />
-              support@zipangile.tech
+              consult@zipangile.tech
             </a>
             <a
-              href="tel:+260972111440"
+              href="tel:+260976557502"
               className="inline-flex items-center gap-2.5 text-sm text-white hover:text-white transition-colors"
             >
               <Phone className="w-4 h-4 text-brand-300" />
-              +260 972 111440
+              0976 557 502
             </a>
           </div>
         </div>

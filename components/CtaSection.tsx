@@ -37,18 +37,18 @@ export default function CtaSection() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="mailto:support@zipangile.tech?subject=Project%20enquiry%20—%20Zipangile%20Studio"
+              href="mailto:consult@zipangile.tech?subject=Project%20enquiry%20—%20Zipangile%20Studio"
               className="inline-flex items-center gap-2.5 px-8 py-4 bg-white text-black font-medium text-sm rounded-xl hover:scale-[1.03] active:scale-[0.98] transition-all shadow-[0_0_30px_rgba(151,33,255,0.25)] hover:shadow-[0_0_44px_rgba(255,46,154,0.35)]"
             >
               <Mail className="w-4 h-4" />
-              support@zipangile.tech
+              consult@zipangile.tech
             </a>
             <a
-              href="tel:+260972111440"
+              href="tel:+260976557502"
               className="inline-flex items-center gap-2.5 px-8 py-4 border border-white/15 text-[#EDEDED] font-medium text-sm rounded-xl hover:border-brand-400/60 hover:text-white active:scale-[0.98] transition-all"
             >
               <Phone className="w-4 h-4" />
-              +260 972 111440
+              0976 557 502
               <ArrowUpRight className="w-4 h-4 opacity-60" />
             </a>
           </div>
