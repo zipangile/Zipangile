@@ -24,4 +24,7 @@ COPY --from=builder /app/out ./out
 
 EXPOSE 3000
 
-CMD ["serve", "-s", "out", "-l", "3000"]
+# Serve the static export with real routes (/book, /quote, /services).
+# NOTE: do NOT use `serve -s` (single-page mode) — it rewrites every route
+# to index.html, which made /book and /quote unreachable (served the homepage).
+CMD ["serve", "out", "-l", "3000"]
