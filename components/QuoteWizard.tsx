@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CampaignHeadline from "./CampaignHeadline";
 import {
   ArrowLeft,
@@ -33,6 +33,17 @@ const STEPS = [
   { id: 3, label: "Your quote", icon: ReceiptText },
 ];
 
+// ?service=<slug> deep-links from the services page pre-select the project category.
+const SERVICE_TO_CATEGORY: Record<string, ProjectCategory> = {
+  website: "website",
+  "website-development": "website",
+  mvp: "mvp",
+  "mvp-development": "mvp",
+  "custom-platform": "custom-platform",
+  "custom-platforms": "custom-platform",
+  other: "other",
+};
+
 function scrollToBooking() {
   // Multi-page: booking lives at /book — quote is already saved to localStorage
   window.location.href = "/book";
@@ -46,6 +57,16 @@ export default function QuoteWizard({ standalone = false }: { standalone?: boole
   const [timeline, setTimeline] = useState<Timeline>("standard");
   const [quote, setQuote] = useState<SavedQuote | null>(null);
   const [ideaError, setIdeaError] = useState(false);
+
+  // Deep-link: /quote?service=<slug> pre-selects the matching project category.
+  useEffect(() => {
+    try {
+      const svc = new URLSearchParams(window.location.search).get("service");
+      if (svc && SERVICE_TO_CATEGORY[svc]) setCategory(SERVICE_TO_CATEGORY[svc]);
+    } catch {
+      /* ignore */
+    }
+  }, []);
 
   const toggleFeature = (id: string) =>
     setFeatureIds((ids) => (ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id]));

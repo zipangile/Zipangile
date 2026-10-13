@@ -15,6 +15,7 @@ const MODELS = [
     points: ["Fixed price agreed up front", "Weekly demos, full source handover", "Documentation + team training included"],
     featured: true,
     cta: "Request a quote",
+    flow: { kind: "quote" as const },
   },
   {
     icon: LifeBuoy,
@@ -26,6 +27,7 @@ const MODELS = [
     points: ["Priority support + uptime care", "Monthly iteration sprints", "Roadmap guidance as you grow"],
     featured: false,
     cta: "Talk to us",
+    flow: { kind: "email" as const, subject: "Build + support retainer enquiry" },
   },
   {
     icon: Handshake,
@@ -37,12 +39,16 @@ const MODELS = [
     points: ["Application + founder conversation", "Long-term technical partnership", "Aligned incentives, shared upside"],
     featured: false,
     cta: "Apply",
+    flow: { kind: "email" as const, subject: "Equity partnership application" },
   },
 ];
 
 export default function EngagementModels() {
-  const goToQuote = () => {
-    window.location.href = "/quote";
+  const flowHref = (m: (typeof MODELS)[number]): string => {
+    if (m.flow.kind === "email") {
+      return `mailto:consult@zipangile.tech?subject=${encodeURIComponent(m.flow.subject)}`;
+    }
+    return "/quote";
   };
 
   return (
@@ -108,15 +114,29 @@ export default function EngagementModels() {
                     </li>
                   ))}
                 </ul>
-                <button
-                  onClick={goToQuote}
-                  className={`mt-auto inline-flex items-center gap-2 text-sm rounded-lg px-5 py-3 font-medium ${
-                    m.featured ? "btn-white" : "btn-outline-white"
-                  }`}
-                >
-                  {m.cta}
-                  <ArrowUpRight className="w-4 h-4" />
-                </button>
+                {m.flow.kind === "email" ? (
+                  <a
+                    href={flowHref(m)}
+                    className={`mt-auto inline-flex items-center gap-2 text-sm rounded-lg px-5 py-3 font-medium ${
+                      m.featured ? "btn-white" : "btn-outline-white"
+                    }`}
+                  >
+                    {m.cta}
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                ) : (
+                  <button
+                    onClick={() => {
+                      window.location.href = flowHref(m);
+                    }}
+                    className={`mt-auto inline-flex items-center gap-2 text-sm rounded-lg px-5 py-3 font-medium ${
+                      m.featured ? "btn-white" : "btn-outline-white"
+                    }`}
+                  >
+                    {m.cta}
+                    <ArrowUpRight className="w-4 h-4" />
+                  </button>
+                )}
               </div>
             );
           })}

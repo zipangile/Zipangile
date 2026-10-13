@@ -19,6 +19,18 @@ const SERVICE_OPTIONS = [
 
 const HUB_BOOKING_URL = "https://ubuntuplay.zipangile.tech/api/v1/zipangile-booking";
 
+// ?service=<slug> deep-links from the services page pre-select the service dropdown.
+const SERVICE_SLUGS: Record<string, string> = {
+  "tech-consultation": SERVICE_OPTIONS[0],
+  "website-development": SERVICE_OPTIONS[1],
+  "mvp-development": SERVICE_OPTIONS[2],
+  "custom-platform": SERVICE_OPTIONS[3],
+  "payment-integration": SERVICE_OPTIONS[4],
+  "team-training": SERVICE_OPTIONS[5],
+  "maintenance-retainer": SERVICE_OPTIONS[6],
+  "startup-launchpad": SERVICE_OPTIONS[7],
+};
+
 type FormState = {
   name: string;
   contact: string;
@@ -62,6 +74,15 @@ export default function BookingForm() {
     setQuote(loadQuote());
     const onQuote = (e: Event) => setQuote((e as CustomEvent<SavedQuote>).detail);
     window.addEventListener("zipangile:quote-ready", onQuote);
+    // Deep-link: /book?service=<slug> pre-selects the matching service option.
+    try {
+      const svc = new URLSearchParams(window.location.search).get("service");
+      if (svc && SERVICE_SLUGS[svc]) {
+        setForm((f) => ({ ...f, service: SERVICE_SLUGS[svc] }));
+      }
+    } catch {
+      /* ignore */
+    }
     return () => window.removeEventListener("zipangile:quote-ready", onQuote);
   }, []);
 

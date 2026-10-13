@@ -18,14 +18,23 @@ import {
 // Flat accent colors rotate across the cards — simple, colorful, no glow.
 const ACCENTS = ["#9721FF", "#FF2E9A", "#14B8A6", "#3B82F6", "#FFB800"];
 
-const SERVICES = [
+// Each service routes to its own flow:
+// - book:  /book?service=<slug>  (scheduled, date-picked services)
+// - quote: /quote?service=<slug> (scoped builds via the quote wizard)
+// - email: mailto:consult@zipangile.tech (conversational engagements)
+type ServiceFlow =
+  | { kind: "book"; slug: string; label: string }
+  | { kind: "quote"; slug: string; label: string }
+  | { kind: "email"; label: string };
+
+const SERVICES: { icon: typeof PhoneCall; title: string; price: string; tag: string; body: string; flow: ServiceFlow }[] = [
   {
     icon: PhoneCall,
     title: "Tech Consultation",
     price: "K1,500 / hour · K5,000 / half-day",
     tag: "ADVISE // 01",
     body: "Strategy, architecture reviews, and digital transformation advice from people who actually ship. One honest session can save you a quarter of building the wrong thing.",
-    cta: true,
+    flow: { kind: "book", slug: "tech-consultation", label: "Book now" },
   },
   {
     icon: Globe,
@@ -33,6 +42,7 @@ const SERVICES = [
     price: "from K8,000",
     tag: "BUILD // 02",
     body: "Business sites and landing pages that load fast, rank well, and convert. Designed, built, and deployed — with content you can update yourself.",
+    flow: { kind: "quote", slug: "website", label: "Request a quote" },
   },
   {
     icon: Rocket,
@@ -40,6 +50,7 @@ const SERVICES = [
     price: "from K25,000",
     tag: "BUILD // 03",
     body: "From a validated idea to a working product in weeks, not quarters. We scope tightly, build the smallest thing that proves the bet, and ship something you can put in front of users or investors.",
+    flow: { kind: "quote", slug: "mvp", label: "Request a quote" },
   },
   {
     icon: LayoutDashboard,
@@ -47,6 +58,7 @@ const SERVICES = [
     price: "quoted per scope",
     tag: "BUILD // 04",
     body: "Two-sided platforms, training systems, facilitator consoles, dashboards. We design the full loop — the people who run it and the people who use it — and build both sides to work together.",
+    flow: { kind: "quote", slug: "custom-platform", label: "Request a quote" },
   },
   {
     icon: CreditCard,
@@ -54,6 +66,7 @@ const SERVICES = [
     price: "K5,000 flat",
     tag: "WIRE // 05",
     body: "Mobile money (MTN, Airtel, Zamtel), cards, and bank transfer wired into your site or app through Lenco — with webhooks, receipts, and reconciliation that just works.",
+    flow: { kind: "book", slug: "payment-integration", label: "Book now" },
   },
   {
     icon: GraduationCap,
@@ -61,6 +74,7 @@ const SERVICES = [
     price: "K3,000 / person / day",
     tag: "ENABLE // 06",
     body: "Practical workshops for your team — digital tools, product thinking, AI in the workplace. Hands-on, in plain language, built around your actual work.",
+    flow: { kind: "book", slug: "team-training", label: "Book now" },
   },
   {
     icon: Wrench,
@@ -68,6 +82,7 @@ const SERVICES = [
     price: "from K2,500 / month",
     tag: "CARE // 07",
     body: "Ongoing support for the things we built together — updates, monitoring, small improvements, and someone to call when it matters. No ticket black holes.",
+    flow: { kind: "email", label: "Talk to us" },
   },
   {
     icon: Compass,
@@ -75,13 +90,21 @@ const SERVICES = [
     price: "K7,500 flat",
     tag: "LAUNCH // 08",
     body: "A guided setup package for new startups: cloud credits (AWS, Google, Microsoft for Startups), domains, email infrastructure, payment integration, PACRA incorporation guidance, and warm introductions into the ecosystem — BongoHive, NTBC, ZICTA. We've navigated all of it ourselves, so we shortcut the process for you. Linkages-only intro session: K2,000.",
+    flow: { kind: "book", slug: "startup-launchpad", label: "Get started" },
   },
 ];
 
 function scrollToBooking(e: React.MouseEvent) {
-  // Multi-page: booking lives at /book now
+  // Multi-page: booking lives at /book now — pre-select Tech Consultation
   e.preventDefault();
-  window.location.href = "/book";
+  window.location.href = "/book?service=tech-consultation";
+}
+
+function flowHref(flow: ServiceFlow, title: string): string {
+  if (flow.kind === "email") {
+    return `mailto:consult@zipangile.tech?subject=${encodeURIComponent(`${title} enquiry`)}`;
+  }
+  return `/${flow.kind}?service=${flow.slug}`;
 }
 
 function ServiceCard({
@@ -92,6 +115,8 @@ function ServiceCard({
   accent: string;
 }) {
   const Icon = s.icon;
+  const ctaClass =
+    "inline-flex items-center gap-1.5 text-[12px] font-mono tracking-wider uppercase text-white underline underline-offset-4";
   return (
     <div
       className="bg-[#190D2B] rounded-2xl p-8 md:p-10 flex flex-col border-t-4"
@@ -121,13 +146,24 @@ function ServiceCard({
         <div className="font-mono text-[10px] text-white uppercase tracking-widest">
           {s.tag}
         </div>
-        {s.cta && (
-          <button
-            onClick={scrollToBooking}
-            className="inline-flex items-center gap-1.5 text-[12px] font-mono tracking-wider uppercase text-white underline underline-offset-4"
+        {s.flow.kind === "email" ? (
+          <a
+            href={flowHref(s.flow, s.title)}
+            className={ctaClass}
             style={{ textDecorationColor: accent }}
           >
-            Book now
+            {s.flow.label}
+            <ArrowRight className="w-3.5 h-3.5" />
+          </a>
+        ) : (
+          <button
+            onClick={() => {
+              window.location.href = flowHref(s.flow, s.title);
+            }}
+            className={ctaClass}
+            style={{ textDecorationColor: accent }}
+          >
+            {s.flow.label}
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         )}
