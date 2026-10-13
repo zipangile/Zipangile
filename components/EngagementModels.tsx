@@ -39,7 +39,7 @@ const MODELS = [
     points: ["Application + founder conversation", "Long-term technical partnership", "Aligned incentives, shared upside"],
     featured: false,
     cta: "Apply",
-    flow: { kind: "email" as const, subject: "Equity partnership application" },
+    flow: { kind: "page" as const, href: "/apply" },
   },
 ];
 
@@ -47,6 +47,9 @@ export default function EngagementModels() {
   const flowHref = (m: (typeof MODELS)[number]): string => {
     if (m.flow.kind === "email") {
       return `mailto:consult@zipangile.tech?subject=${encodeURIComponent(m.flow.subject)}`;
+    }
+    if (m.flow.kind === "page") {
+      return m.flow.href;
     }
     return "/quote";
   };
