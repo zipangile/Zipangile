@@ -97,15 +97,15 @@ function ServiceCard({
       className="bg-[#190D2B] rounded-2xl p-8 md:p-10 flex flex-col border-t-4"
       style={{ borderTopColor: accent }}
     >
-      <div className="flex items-start justify-between mb-8">
+      <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-start sm:justify-between mb-8">
         <div
-          className="w-12 h-12 rounded-lg flex items-center justify-center"
+          className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0"
           style={{ background: accent }}
         >
           <Icon className="w-6 h-6 text-white" />
         </div>
         <div
-          className="font-mono text-[11px] tracking-wider rounded-full px-4 py-1.5 whitespace-nowrap"
+          className="font-mono text-[11px] tracking-wider rounded-full px-4 py-1.5"
           style={{ color: accent, border: `1px solid ${accent}` }}
         >
           {s.price}
