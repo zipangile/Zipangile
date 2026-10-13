@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { FileCheck2, LifeBuoy, Handshake, ArrowUpRight } from "lucide-react";
 import CampaignHeadline from "./CampaignHeadline";
 
 const MODELS = [
   {
     icon: FileCheck2,
+    accent: "#9721FF",
     name: "Fixed-scope build",
     tag: "MODEL // 01",
     headline: "One build. One price. No surprises.",
@@ -18,6 +18,7 @@ const MODELS = [
   },
   {
     icon: LifeBuoy,
+    accent: "#FF2E9A",
     name: "Build + support retainer",
     tag: "MODEL // 02",
     headline: "Launch it, then keep improving it.",
@@ -28,6 +29,7 @@ const MODELS = [
   },
   {
     icon: Handshake,
+    accent: "#14B8A6",
     name: "Equity partnership",
     tag: "MODEL // 03",
     headline: "For exceptional founders, we build alongside you.",
@@ -44,10 +46,10 @@ export default function EngagementModels() {
   };
 
   return (
-    <section id="models" className="py-28 md:py-40 bg-transparent relative px-6 border-t border-white/[0.06]">
+    <section id="models" className="py-28 md:py-40 bg-[#0D0716] relative px-6 border-t border-white/10">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 md:mb-20">
-          <p className="font-mono text-xs text-brand-300 tracking-[0.3em] uppercase mb-5">
+          <p className="font-mono text-xs text-[#3B82F6] tracking-[0.3em] uppercase mb-5">
             ENGAGEMENT MODELS
           </p>
           <CampaignHeadline
@@ -58,66 +60,64 @@ export default function EngagementModels() {
             ]}
             className="text-3xl md:text-6xl max-w-3xl"
           />
-          <p className="text-base md:text-lg text-white font-light leading-relaxed mt-6 max-w-2xl">
+          <p className="text-base md:text-lg text-white leading-relaxed mt-6 max-w-2xl">
             No inflated promises, no hidden meters. Pick the shape that fits
             where you are — every engagement starts with a conversation.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {MODELS.map((m, i) => {
+          {MODELS.map((m) => {
             const Icon = m.icon;
             return (
-              <motion.div
+              <div
                 key={m.name}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className={`relative rounded-2xl p-8 md:p-10 flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 ${
-                  m.featured
-                    ? "bg-gradient-to-b from-brand-500/[0.12] to-surface border border-brand-500/30 shadow-[0_0_60px_rgba(151,33,255,0.12)]"
-                    : "glass-panel hover:border-white/[0.16]"
+                className={`rounded-2xl p-8 md:p-10 flex flex-col ${
+                  m.featured ? "bg-[#9721FF]" : "bg-[#190D2B] border-t-4"
                 }`}
+                style={m.featured ? undefined : { borderTopColor: m.accent }}
               >
                 {m.featured && (
-                  <div className="absolute top-6 right-6 font-mono text-[10px] tracking-[0.2em] uppercase text-brand-300 bg-brand-500/15 border border-brand-500/30 rounded-full px-3 py-1">
+                  <div className="self-start font-mono text-[10px] tracking-[0.2em] uppercase text-[#9721FF] bg-white rounded-full px-3 py-1 mb-8">
                     Most common
                   </div>
                 )}
-                <div className="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/25 flex items-center justify-center mb-8">
-                  <Icon className="w-6 h-6 text-brand-300" />
+                <div
+                  className={`w-12 h-12 rounded-xl flex items-center justify-center mb-8 ${
+                    m.featured ? "bg-white/15" : ""
+                  }`}
+                  style={m.featured ? undefined : { background: m.accent }}
+                >
+                  <Icon className="w-6 h-6 text-white" />
                 </div>
                 <p className="font-mono text-[10px] text-white uppercase tracking-[0.25em] mb-3">
                   {m.tag}
                 </p>
-                <h3 className="text-xl md:text-2xl font-bold text-[#F4F4F5] mb-3 font-sans tracking-tight">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-3 font-sans tracking-tight">
                   {m.name}
                 </h3>
-                <p className="text-sm text-brand-200/80 font-medium mb-4">{m.headline}</p>
-                <p className="text-sm text-white font-light leading-relaxed mb-8">
+                <p className="text-sm text-white font-medium mb-4">{m.headline}</p>
+                <p className="text-sm text-white leading-relaxed mb-8">
                   {m.body}
                 </p>
                 <ul className="space-y-3 mb-10">
                   {m.points.map((pt) => (
-                    <li key={pt} className="flex items-start gap-3 text-sm text-white font-light">
-                      <span className="mt-[7px] h-1 w-1 rounded-full bg-brand-400 shrink-0" />
+                    <li key={pt} className="flex items-start gap-3 text-sm text-white">
+                      <span className="mt-[7px] h-1 w-1 rounded-full bg-white shrink-0" />
                       {pt}
                     </li>
                   ))}
                 </ul>
                 <button
                   onClick={goToQuote}
-                  className={`mt-auto inline-flex items-center gap-2 text-sm font-medium rounded-lg px-5 py-3 transition-all active:scale-[0.98] ${
-                    m.featured
-                      ? "bg-white text-black hover:shadow-[0_0_30px_rgba(255,255,255,0.25)]"
-                      : "border border-white/15 text-[#EDEDED] hover:border-brand-400/50 hover:text-white"
+                  className={`mt-auto inline-flex items-center gap-2 text-sm rounded-lg px-5 py-3 font-medium ${
+                    m.featured ? "btn-white" : "btn-outline-white"
                   }`}
                 >
                   {m.cta}
                   <ArrowUpRight className="w-4 h-4" />
                 </button>
-              </motion.div>
+              </div>
             );
           })}
         </div>

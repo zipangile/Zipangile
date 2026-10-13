@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { CalendarCheck, CheckCircle2, Loader2, ArrowRight, ReceiptText } from "lucide-react";
 import { loadQuote, formatZMW, type SavedQuote } from "../lib/quoteCalculator";
 import CampaignHeadline from "./CampaignHeadline";
@@ -142,17 +141,14 @@ export default function BookingForm() {
   // Confirmation emails are sent by the booking service now that the form
   // posts to the Hub — no manual "confirm via email" step needed.
 
-  const inputCls =
-    "glass-input px-4 py-3.5 text-[15px] placeholder:text-white";
-  const labelCls = "glass-label";
+  const inputCls = "field px-4 py-3.5 text-[15px]";
+  const labelCls = "field-label";
 
   return (
-    <section id="booking" className="py-28 md:py-40 bg-transparent relative px-6 border-t border-white/[0.06] overflow-hidden">
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full bg-brand-600/10 blur-[120px] pointer-events-none" />
-
-      <div className="relative z-10 max-w-4xl mx-auto">
+    <section id="booking" className="py-28 md:py-40 bg-[#0D0716] relative px-6">
+      <div className="max-w-4xl mx-auto">
         <div className="text-center mb-14 md:mb-16">
-          <p className="font-mono text-xs text-brand-400 tracking-[0.3em] uppercase mb-4">
+          <p className="font-mono text-xs text-[#3B82F6] tracking-[0.3em] uppercase mb-4">
             BOOKING
           </p>
           <CampaignHeadline
@@ -163,7 +159,7 @@ export default function BookingForm() {
             ]}
             className="text-3xl md:text-6xl"
           />
-          <p className="text-base md:text-lg text-white font-light leading-relaxed mt-6 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-white leading-relaxed mt-6 max-w-2xl mx-auto">
             Pick a service and a date that suits you. We confirm the slot
             within two working days, then send a payment link — mobile money or
             card. No payment is taken until your slot is confirmed.
@@ -171,22 +167,17 @@ export default function BookingForm() {
         </div>
 
         {booking ? (
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-2xl border border-brand-500/30 bg-gradient-to-br from-brand-600/15 to-brandpink-600/10 p-8 md:p-12 text-center"
-          >
-            <CheckCircle2 className="w-12 h-12 text-brand-300 mx-auto mb-6" />
-            <h3 className="text-2xl md:text-3xl font-bold text-[#F4F4F5] tracking-tight mb-3">
+          <div className="rounded-2xl bg-[#9721FF] p-8 md:p-12 text-center">
+            <CheckCircle2 className="w-12 h-12 text-white mx-auto mb-6" />
+            <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight mb-3">
               Booking received.
             </h3>
-            <p className="text-white font-light leading-relaxed max-w-xl mx-auto mb-8">
+            <p className="text-white leading-relaxed max-w-xl mx-auto mb-8">
               Your reference is{" "}
-              <span className="font-mono text-brand-300 tracking-wider">{booking.reference}</span>.
-              We&apos;ll confirm <strong className="text-[#EDEDED] font-medium">{booking.date}</strong>{" "}
-              for <strong className="text-[#EDEDED] font-medium">{booking.service.split(" — ")[0]}</strong>{" "}
-              within two working days at <strong className="text-[#EDEDED] font-medium">{booking.contact}</strong>.
+              <span className="font-mono text-white tracking-wider">{booking.reference}</span>.
+              We&apos;ll confirm <strong className="font-medium">{booking.date}</strong>{" "}
+              for <strong className="font-medium">{booking.service.split(" — ")[0]}</strong>{" "}
+              within two working days at <strong className="font-medium">{booking.contact}</strong>.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <p className="font-mono text-[11px] text-white tracking-[0.15em] uppercase">
@@ -204,28 +195,24 @@ export default function BookingForm() {
                   setBooking(null);
                   setForm({ name: "", contact: "", service: SERVICE_OPTIONS[0], date: "", notes: "" });
                 }}
-                className="text-[13px] font-mono tracking-wider uppercase text-white hover:text-white transition-colors"
+                className="text-[13px] font-mono tracking-wider uppercase text-white underline underline-offset-4"
               >
                 Make another booking
               </button>
             </div>
-          </motion.div>
+          </div>
         ) : (
-          <motion.form
+          <form
             onSubmit={onSubmit}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="glass-panel p-8 md:p-12"
+            className="bg-[#190D2B] rounded-2xl p-8 md:p-12 border-t-4 border-t-[#3B82F6]"
             noValidate
           >
             {quote && (
-              <div className="flex items-center gap-4 rounded-xl border border-brand-500/30 bg-brand-500/[0.07] px-5 py-4 mb-8">
-                <ReceiptText className="w-5 h-5 text-brand-300 shrink-0" />
+              <div className="flex items-center gap-4 rounded-xl border border-white/20 bg-[#0D0716] px-5 py-4 mb-8">
+                <ReceiptText className="w-5 h-5 text-white shrink-0" />
                 <div className="text-sm">
-                  <span className="font-mono text-brand-300 tracking-wider">{quote.reference}</span>
-                  <span className="text-white font-light">
+                  <span className="font-mono text-white tracking-wider">{quote.reference}</span>
+                  <span className="text-white">
                     {" "}· {quote.breakdown.baseLabel} · {formatZMW(quote.breakdown.low)}–
                     {formatZMW(quote.breakdown.high)} — attached to this booking.
                   </span>
@@ -245,7 +232,7 @@ export default function BookingForm() {
                   placeholder="e.g. Chanda Mwila"
                   className={inputCls}
                 />
-                {errors.name && <p className="text-red-400 text-xs mt-2">{errors.name}</p>}
+                {errors.name && <p className="text-[#FF2E9A] text-xs mt-2">{errors.name}</p>}
               </div>
               <div>
                 <label htmlFor="bk-contact" className={labelCls}>
@@ -259,7 +246,7 @@ export default function BookingForm() {
                   placeholder="you@example.com or 0977 123 456"
                   className={inputCls}
                 />
-                {errors.contact && <p className="text-red-400 text-xs mt-2">{errors.contact}</p>}
+                {errors.contact && <p className="text-[#FF2E9A] text-xs mt-2">{errors.contact}</p>}
               </div>
             </div>
 
@@ -272,7 +259,7 @@ export default function BookingForm() {
                   id="bk-service"
                   value={form.service}
                   onChange={set("service")}
-                  className={`${inputCls} appearance-none [&>option]:bg-[#0A0A0A]`}
+                  className={`${inputCls} appearance-none`}
                 >
                   {SERVICE_OPTIONS.map((s) => (
                     <option key={s} value={s}>
@@ -293,13 +280,13 @@ export default function BookingForm() {
                   onChange={set("date")}
                   className={`${inputCls} [color-scheme:dark]`}
                 />
-                {errors.date && <p className="text-red-400 text-xs mt-2">{errors.date}</p>}
+                {errors.date && <p className="text-[#FF2E9A] text-xs mt-2">{errors.date}</p>}
               </div>
             </div>
 
             <div className="mb-8">
               <label htmlFor="bk-notes" className={labelCls}>
-                What are you working on? <span className="text-white normal-case tracking-normal">(optional)</span>
+                What are you working on? <span className="normal-case tracking-normal">(optional)</span>
               </label>
               <textarea
                 id="bk-notes"
@@ -314,7 +301,7 @@ export default function BookingForm() {
             <button
               type="submit"
               disabled={submitting}
-              className="btn-fluid w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 text-white font-medium text-[15px] rounded-xl disabled:opacity-60"
+              className="btn-brand w-full inline-flex items-center justify-center gap-2.5 px-8 py-4 text-[15px] disabled:opacity-60"
             >
               {submitting ? (
                 <>
@@ -331,7 +318,7 @@ export default function BookingForm() {
             </button>
 
             {submitError && (
-              <p className="text-red-400 text-sm mt-4 text-center" role="alert">
+              <p className="text-[#FF2E9A] text-sm mt-4 text-center" role="alert">
                 {submitError}
               </p>
             )}
@@ -339,7 +326,7 @@ export default function BookingForm() {
             <p className="font-mono text-[11px] text-white tracking-[0.15em] uppercase text-center mt-6">
               No payment now — we confirm first, then send a payment link
             </p>
-          </motion.form>
+          </form>
         )}
       </div>
     </section>

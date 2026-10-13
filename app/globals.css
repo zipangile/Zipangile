@@ -8,6 +8,8 @@
   --font-geist-mono: 'Geist Mono', ui-monospace, monospace;
   --brand-purple: #9721ff;
   --brand-pink: #ff2e9a;
+  --plum: #0d0716;
+  --card: #190d2b;
 }
 
 html {
@@ -15,8 +17,8 @@ html {
 }
 
 body {
-  background-color: #0d0716;
-  color: #EDEDED;
+  background-color: var(--plum);
+  color: #ffffff;
   font-family: var(--font-inter);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -29,8 +31,7 @@ body {
   letter-spacing: 0.01em;
 }
 
-/* Campaign headline voice — heavy condensed all-caps, stacked tight,
-   in the spirit of the "THE POWER TO ..." series. */
+/* Campaign headline voice — heavy condensed all-caps, stacked tight. */
 .font-campaign {
   font-family: var(--font-anton);
   font-weight: 400;
@@ -49,9 +50,14 @@ body {
   margin-bottom: 0.06em;
 }
 
+::selection {
+  background: #9721ff;
+  color: #ffffff;
+}
+
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -59,304 +65,124 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2a1545;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
   background: #3d1f63;
+  border-radius: 5px;
 }
 
-.radial-glow-hero {
-  background: radial-gradient(circle 600px at 50% 30%, rgba(151, 33, 255, 0.16) 0%, rgba(255, 46, 154, 0.06) 50%, transparent 100%);
-}
+/* ── Simple flat buttons. No gradients, no glow, no lift. ── */
 
-.mesh-grid {
-  background-image:
-    radial-gradient(at 0% 0%, rgba(151, 33, 255, 0.09) 0, transparent 50%),
-    radial-gradient(at 50% 0%, rgba(255, 46, 154, 0.07) 0, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(151, 33, 255, 0.09) 0, transparent 50%);
-  background-size: 100% 100%;
-}
-
-.bento-glow-border {
-  position: relative;
-  background: #12081f;
+.btn-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #9721ff;
+  color: #ffffff;
+  font-weight: 500;
   border-radius: 12px;
-  z-index: 1;
+  transition: background 0.15s ease;
+}
+.btn-brand:hover {
+  background: #7e1ad9;
 }
 
-.bento-glow-border::before {
-  content: "";
-  position: absolute;
-  top: -1.5px;
-  left: -1.5px;
-  right: -1.5px;
-  bottom: -1.5px;
-  background: linear-gradient(90deg, #9721ff, #ff2e9a, #9721ff);
-  background-size: 200% 200%;
-  animation: shimmer-glow 6s linear infinite;
-  border-radius: 13px;
-  z-index: -1;
-  opacity: 0.8;
+.btn-pink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #ff2e9a;
+  color: #ffffff;
+  font-weight: 500;
+  border-radius: 12px;
+  transition: background 0.15s ease;
+}
+.btn-pink:hover {
+  background: #e01f86;
 }
 
-.glow-card {
-  position: relative;
-  transition: border-color 0.3s ease;
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  color: #0d0716;
+  font-weight: 500;
+  border-radius: 12px;
+  transition: background 0.15s ease;
+}
+.btn-white:hover {
+  background: #f4f4f5;
 }
 
-.glow-card:hover {
-  border-color: rgba(151, 33, 255, 0.45);
+.btn-outline-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  font-weight: 500;
+  border-radius: 12px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.btn-outline-white:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.glow-card-bg {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(151, 33, 255, 0.08), transparent 40%);
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
+/* ── Simple flat form fields. Dark well, thin border, white text. ── */
 
-.glow-card:hover .glow-card-bg {
-  opacity: 1;
-}
-
-@keyframes blink {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.4;
-    transform: scale(0.9);
-  }
-}
-
-.status-blink {
-  animation: blink 2s infinite ease-in-out;
-}
-
-/* Big-tech gradient text + CTA helpers */
-.text-gradient-brand {
-  background: linear-gradient(100deg, #c07fff 0%, #ff2e9a 55%, #9721ff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.btn-gradient-brand {
-  background: linear-gradient(100deg, #9721ff 0%, #ff2e9a 100%);
-  transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.2s ease;
-  box-shadow: 0 8px 32px rgba(151, 33, 255, 0.35);
-}
-
-.btn-gradient-brand:hover {
-  filter: brightness(1.08);
-  box-shadow: 0 10px 44px rgba(255, 46, 154, 0.4);
-  transform: translateY(-1px);
-}
-
-.btn-gradient-brand:active {
-  transform: translateY(0) scale(0.99);
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   COHESION PASS — everything condenses out of the fluid, nothing
-   sits on top of it. Glassmorphism + feathered imagery + glow.
-   ═══════════════════════════════════════════════════════════════ */
-
-/* ═══════════════════════════════════════════════════════════════
-   REAL GLASS — frosted, physical, light-passing. Not faded opacity.
-   The fluid behind must be VISIBLE but distorted through the panel.
-   Layer stack (bottom → top):
-   1. Whisper-thin white tint (3–6%) — the glass body
-   2. Heavy blur + saturation boost — the frost
-   3. Diagonal sheen — light raking across the surface
-   4. Inner top + left highlights — edges catching environment light
-   5. Deep drop shadow — physical floating weight
-   6. Frosted noise — micro-texture that sells "glass"
-   ═══════════════════════════════════════════════════════════════ */
-
-.glass-panel {
-  position: relative;
-  /* Whisper tint — the fluid shows through, distorted by the blur below */
-  background:
-    linear-gradient(135deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.018) 45%, rgba(255,255,255,0.04) 100%);
-  backdrop-filter: blur(40px) saturate(1.9) brightness(1.06);
-  -webkit-backdrop-filter: blur(40px) saturate(1.9) brightness(1.06);
-  border-radius: 24px;
-  /* Physical weight: deep soft shadow + faint colored ambient lift */
-  box-shadow:
-    0 32px 96px rgba(0, 0, 0, 0.55),
-    0 4px 24px rgba(0, 0, 0, 0.35),
-    0 0 120px rgba(151, 33, 255, 0.07);
-}
-/* Crisp gradient hairline border — light catching the glass edge */
-.glass-panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg,
-    rgba(255, 255, 255, 0.28),
-    rgba(151, 33, 255, 0.35) 30%,
-    rgba(255, 255, 255, 0.06) 55%,
-    rgba(255, 46, 154, 0.3) 80%,
-    rgba(255, 255, 255, 0.14));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-/* Inner light: top edge highlight + diagonal sheen + frosted noise */
-.glass-panel::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background:
-    /* top edge catches light */
-    linear-gradient(180deg, rgba(255,255,255,0.10), transparent 22%),
-    /* diagonal sheen raking across */
-    linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.035) 48%, transparent 56%);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.16),
-              inset 1px 0 0 rgba(255,255,255,0.05);
-  pointer-events: none;
-}
-
-/* Glass inputs: recessed into the panel — dark wells with inner shadow,
-   glowing focus ring in the brand gradient */
-.glass-input {
-  width: 100%;
-  background: rgba(5, 2, 12, 0.42);
-  backdrop-filter: blur(16px) saturate(1.4);
-  -webkit-backdrop-filter: blur(16px) saturate(1.4);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 14px;
-  color: #EDEDED;
-  box-shadow:
-    inset 0 2px 12px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(0, 0, 0, 0.3),
-    0 1px 0 rgba(255, 255, 255, 0.05);
-  transition: border-color 0.25s ease, box-shadow 0.3s ease, background 0.25s ease;
-}
-.glass-input::placeholder { color: rgba(255, 255, 255, 0.75); }
-.glass-input:hover {
-  border-color: rgba(255, 255, 255, 0.16);
-}
-.glass-input:focus {
-  outline: none;
-  border-color: rgba(151, 33, 255, 0.7);
-  background: rgba(8, 3, 18, 0.5);
-  box-shadow:
-    inset 0 2px 12px rgba(0, 0, 0, 0.4),
-    0 0 0 3px rgba(151, 33, 255, 0.16),
-    0 0 40px rgba(151, 33, 255, 0.22),
-    0 0 80px rgba(255, 46, 154, 0.10);
-}
-/* Select dropdown options stay readable on dark */
-.glass-input option {
-  background: #0D0716;
-  color: #EDEDED;
-}
-
-/* Form labels: etched into the glass */
-.glass-label {
+.field-label {
   display: block;
   font-family: ui-monospace, monospace;
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: #ffffff;
   margin-bottom: 10px;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
 }
 
-/* Buttons: light in the fluid, not a flat sticker */
-.btn-fluid {
-  background: linear-gradient(100deg, #9721ff 0%, #ff2e9a 100%);
-  box-shadow: 0 8px 32px rgba(151, 33, 255, 0.35),
-              0 0 64px rgba(255, 46, 154, 0.18),
-              inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.2s ease;
+.field {
+  width: 100%;
+  background: #0d0716;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  color: #ffffff;
+  transition: border-color 0.15s ease;
 }
-.btn-fluid:hover {
-  filter: brightness(1.1);
-  box-shadow: 0 10px 44px rgba(151, 33, 255, 0.45),
-              0 0 96px rgba(255, 46, 154, 0.28),
-              inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  transform: translateY(-1px);
+.field::placeholder {
+  color: rgba(255, 255, 255, 0.55);
 }
-.btn-fluid:active { transform: translateY(0) scale(0.99); }
-
-/* Portraits: feathered edges dissolve into the fluid behind them */
-.portrait-blend {
-  -webkit-mask-image: radial-gradient(ellipse 80% 75% at 50% 42%, black 38%, transparent 92%);
-  mask-image: radial-gradient(ellipse 80% 75% at 50% 42%, black 38%, transparent 92%);
+.field:hover {
+  border-color: rgba(255, 255, 255, 0.35);
 }
-.portrait-halo {
-  position: absolute;
-  inset: -8%;
-  border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.5;
-  pointer-events: none;
-  z-index: -1;
+.field:focus {
+  outline: none;
+  border-color: #9721ff;
+}
+/* Select dropdown options stay readable on dark */
+.field option {
+  background: #0d0716;
+  color: #ffffff;
 }
 
-/* Reveal choreography: content condenses out of the fluid */
-@keyframes condense-in {
-  from { opacity: 0; transform: translateY(28px); filter: blur(12px); }
-  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+/* Light, single-purpose fade for wizard step switches — not a "look". */
+@keyframes step-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
-.reveal-condense {
-  animation: condense-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+.step-fade {
+  animation: step-fade 0.2s ease;
 }
 
-/* Cinematic post grade — film grain + vignette over the fluid canvas.
-   Sits between the canvas (-z-10) and content: unifies everything
-   below the UI into one graded world. */
-.post-grade {
-  position: fixed;
-  inset: 0;
-  z-index: -5;
-  pointer-events: none;
-  /* Vignette: gentle edge falloff */
-  background: radial-gradient(ellipse 120% 90% at 50% 45%, transparent 55%, rgba(5, 2, 10, 0.42) 100%);
-}
-/* Mobile scrim: the fluid sim blows out to near-white on small screens
-   (short viewport, bright palette phases), destroying text contrast.
-   A uniform dark veil keeps headlines, cards, and forms readable
-   without touching the desktop grade. */
-@media (max-width: 768px) {
-  .post-grade {
-    background:
-      linear-gradient(rgba(13, 7, 22, 0.62), rgba(13, 7, 22, 0.62)),
-      radial-gradient(ellipse 120% 90% at 50% 45%, transparent 45%, rgba(5, 2, 10, 0.5) 100%);
-  }
-}
-.post-grade::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  /* Animated film grain — kills banding, adds organic texture */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  background-size: 240px 240px;
-  opacity: 0.055;
-  animation: grain-shift 0.9s steps(4) infinite;
-}
-@keyframes grain-shift {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(-3%, 2%); }
-  50% { transform: translate(2%, -3%); }
-  75% { transform: translate(-2%, -2%); }
-  100% { transform: translate(0, 0); }
-}
 @media (prefers-reduced-motion: reduce) {
-  .post-grade::after { animation: none; }
+  html {
+    scroll-behavior: auto;
+  }
+  .step-fade {
+    animation: none;
+  }
 }

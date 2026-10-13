@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${righteous.variable} ${inter.variable} ${anton.variable} bg-[#0D0716] text-[#EDEDED] antialiased`}
+        className={`${righteous.variable} ${inter.variable} ${anton.variable} bg-[#0D0716] text-white antialiased`}
       >
         <SiteShell>{children}</SiteShell>
       </body>
